@@ -6,6 +6,7 @@
 3. Sagili Nithin CSAI LCI2023040 nithinrohitian@gmail.com nithincod
 4. Pesara Pranilash Reddy CSB LCB2023040 pesarapranilash@gmail.com Pranilash
 5. Annam Radesh CSAI LCI2023020 radeshannam@gmail.com Radesh07
+6. veda akash CSAI LCI2023057 vedaakashyendluri@gmail.com vedaakash2005
 
 # Project Name : Chess.com Clone
 
