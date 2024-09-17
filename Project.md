@@ -1,4 +1,3 @@
-# Project.MD
 
 ## Chess.com Clone - Project Scope
 
