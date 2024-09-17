@@ -9,3 +9,6 @@
 
 # Project Name : Chess.com Clone
 
+# Link to the GitHub issue to record the Approval :
+ **[Issue #14](https://github.com/IIITLucknowSWEngg/Assignment/issues/14)**
+
