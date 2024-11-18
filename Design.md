@@ -191,7 +191,66 @@ The Chess.com Clone uses a NoSQL database (e.g., MongoDB) to manage game data. T
 
 ### 5.2 **Entity-Relationship Diagram**
 
-![Database Schema Diagram](https://github.com/user-attachments/assets/2e0649d3-c90b-45fa-96b2-26930fb27858)
+```
+@startuml
+
+entity user {
+  *user_id: bigint(20)
+  username: varchar(40)
+  email: varchar(100)
+  password: varchar(100)
+  profile_picture: varchar(100)
+}
+
+entity game {
+  *game_id: bigint(20)
+  player_1_id: bigint(20)
+  player_2_id: bigint(20)
+  start_time: timestamp(3)
+  end_time: timestamp(3)
+  status: varchar(20)
+}
+
+entity move {
+  *move_id: bigint(20)
+  game_id: bigint(20)
+  player_id: bigint(20)
+  move_description: varchar(10)
+  timestamp: timestamp(3)
+}
+
+entity payment {
+  *payment_id: bigint(20)
+  user_id: bigint(20)
+  amount: decimal(10, 2)
+  date: timestamp(3)
+  payment_method: varchar(20)
+}
+
+entity leaderboard {
+  *leaderboard_id: bigint(20)
+  user_id: bigint(20)
+  rank: int(10)
+  points: int(10)
+}
+
+entity chat {
+  *chat_id: bigint(20)
+  game_id: bigint(20)
+  user_id: bigint(20)
+  message: varchar(255)
+  timestamp: timestamp(3)
+}
+
+user ||--o{ game: "player 1"
+user ||--o{ game: "player 2"
+game ||--o{ move
+game ||--o{ chat
+user ||--o{ payment
+user ||--o{ leaderboard
+
+@enduml
+```
 
 ---
 
