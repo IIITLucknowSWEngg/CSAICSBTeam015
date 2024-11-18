@@ -70,7 +70,8 @@ GameplayEngine --> NotificationService : Notify Players
 ### 3.2 **Container Diagram**
 
 #### **Player and Admin Containers**
-![Container Diagram](https://github.com/user-attachments/assets/9fc8bddc-10be-48a4-8096-8c770fc4f56f)
+![image](https://github.com/user-attachments/assets/765d4ffd-85fa-42fb-8214-37aa9160c73a)
+
 
 ```plantuml
 @startuml
