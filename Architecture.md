@@ -2,7 +2,6 @@
 
 ## 1. **System Context Diagram**
 
-The System Context Diagram offers a high-level view of the **Chess Clone App** and its interactions with external actors and systems.
 ![PHOTO-2024-11-18-14-29-23](https://github.com/user-attachments/assets/ba3a109e-8a9f-4eea-9ff3-75142b691e1e)
 
 ```plantuml
