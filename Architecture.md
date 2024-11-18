@@ -1,8 +1,11 @@
-System Context Diagram
-The System Context Diagram provides a high-level overview of the Chess Clone application and its interactions with external actors and systems.
+---
 
-plantuml
-Copy code
+## 1. **System Context Diagram**
+
+The System Context Diagram offers a high-level view of the **Chess Clone App** and its interactions with external actors and systems.
+![PHOTO-2024-11-18-14-29-23](https://github.com/user-attachments/assets/ba3a109e-8a9f-4eea-9ff3-75142b691e1e)
+
+```plantuml
 @startuml
 ' External Actors
 actor "Player (User)" as Player
@@ -33,12 +36,57 @@ Admin --> AdminPanel : Manage Users and Games
 GameplayEngine --> ChessAI : Access AI Moves
 GameplayEngine --> NotificationService : Notify Players
 @enduml
-Component Diagram
-The Component Diagram details the internal architecture of the system, breaking it into subsystems for Players and Admins.
+```
 
-Component Diagram for Players
-plantuml
-Copy code
+---
+## 2. **Conatiner Diagram**
+![PHOTO-2024-11-18-14-30-11](https://github.com/user-attachments/assets/8b6d55c7-ca97-4f4a-9903-cd03877866fb)
+
+```plantuml
+@startuml
+title Container Diagram - Chess Clone
+
+' Add primary containers
+rectangle "Web/Mobile App" as App <<User Interface>> #lightblue
+rectangle "API Gateway" as APIGateway <<API Gateway>> #lightgreen
+rectangle "Game Engine Service" as GameEngine <<Service>> #lightyellow
+rectangle "User Service" as UserService <<Service>> #lightyellow
+rectangle "Leaderboard Service" as LeaderboardService <<Service>> #lightyellow
+rectangle "Chat Service" as ChatService <<Service>> #lightyellow
+
+' Database containers
+database "Game Database" as GameDB <<Database>> #lightpink
+database "User Database" as UserDB <<Database>> #lightpink
+database "Leaderboard Database" as LeaderboardDB <<Database>> #lightpink
+
+' External services
+rectangle "Notification Service" as NotificationService <<External Service>> #lightgray
+
+' Relationships between containers
+App --> APIGateway : API Requests
+APIGateway --> UserService : Manage Users
+APIGateway --> GameEngine : Game Logic
+APIGateway --> LeaderboardService : Rankings
+APIGateway --> ChatService : Messaging
+APIGateway --> NotificationService : Player Notifications
+
+GameEngine --> GameDB : Read/Write Games
+UserService --> UserDB : Manage User Data
+LeaderboardService --> LeaderboardDB : Update Rankings
+
+@enduml
+```
+
+---
+
+## 3. **Component Diagram**
+
+### 3.1. **Component Diagram for Players**
+
+![image](https://github.com/user-attachments/assets/43183bcf-5aae-4df1-b765-771b3c7faaa5)
+
+
+```plantuml
 @startuml
 ' External Actor
 actor "Player" as Player
@@ -61,15 +109,16 @@ Player --> GameplayEngine : Play Chess
 Player --> Leaderboard : View Rankings
 Player --> ChatSystem : Chat with Opponent
 @enduml
-Key Components:
-Authentication and Profile Management: Handles user sign-up, login, and profile updates.
-Game Lobby and Matchmaking: Allows players to join or create matches.
-Chess Gameplay Engine: Manages game logic, turn tracking, and moves validation.
-Leaderboard and Statistics: Displays rankings and player statistics.
-In-Game Chat: Enables players to communicate during matches.
-Component Diagram for Admins
-plantuml
-Copy code
+```
+
+---
+
+### 3.2. **Component Diagram for Admins**
+
+![image](https://github.com/user-attachments/assets/b1dff844-96b9-485c-a57f-8199da55e4ca)
+
+
+```plantuml
 @startuml
 ' External Actor
 actor "Admin" as Admin
@@ -92,17 +141,17 @@ Admin --> LeaderboardManagement : Manage Rankings
 Admin --> NotificationManagement : Send Notifications
 Admin --> ReportsAnalytics : Generate Reports
 @enduml
-Key Components:
-User Management: Manages player accounts, bans, and other administrative actions.
-Game Monitoring: Provides tools to observe ongoing games for compliance or troubleshooting.
-Leaderboard Management: Enables the adjustment of rankings and statistics.
-Notification Management: Facilitates sending system-wide updates and announcements.
-Reports and Analytics: Generates reports on system usage, player activity, and more.
-Deployment Diagram
-The Deployment Diagram outlines the physical infrastructure of the Chess Clone system.
+```
 
-plantuml
-Copy code
+
+---
+
+## 4. **Deployment Diagram**
+
+![PHOTO-2024-11-18-14-32-28](https://github.com/user-attachments/assets/53b73b63-6112-4218-90c9-e74991e2dde1)
+.
+
+```plantuml
 @startuml
 title Deployment Diagram - Chess Clone
 
@@ -139,3 +188,4 @@ cloud "External Services" {
 [Leaderboard Service] --> LeaderboardDB : Rankings
 
 @enduml
+```
