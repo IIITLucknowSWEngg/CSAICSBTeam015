@@ -1,4 +1,3 @@
----
 # **Software Requirements Specification (SRS)**
 
 ## **1. Introduction**
@@ -14,6 +13,24 @@ The **Chess.com Clone** is a web-based platform allowing users to:
 - Track rankings based on the ELO rating system.
 
 The project focuses on **web-based gameplay only**, excluding mobile apps and chess variants like Chess960.
+
+### **1.3 Definitions, Acronyms, and Abbreviations**
+- **SRS**: Software Requirements Specification  
+- **ELO**: A rating system used in chess to rank players based on their performance.
+- **API**: Application Programming Interface  
+- **AI**: Artificial Intelligence  
+- **UI**: User Interface  
+- **HTTPS**: Hypertext Transfer Protocol Secure  
+- **RESTful API**: Representational State Transfer API for web services
+
+### **1.4 References**
+- IEEE Std 830-1998, IEEE Recommended Practice for Software Requirements Specifications
+- SWEBOK v3.0, Software Engineering Body of Knowledge
+- Chess Rules and Regulations (FIDE)
+- User Requirements Document
+
+### **1.5 Overview**
+This document describes the functional and non-functional requirements of the **Chess.com Clone**. It includes details about the platform’s features, system functionalities, and external interfaces, along with performance and security requirements.
 
 ---
 
@@ -149,4 +166,21 @@ The platform will be accessible from any device with an internet connection and 
 - Users will access the platform via a stable internet connection.
 - Modern web browsers will be used, with no requirement for additional plugins or software.
 
----
+###  **6.2 Use Case Diagram
+This detailed Use Case Diagram represents interactions between actors (Player, Admin, and Spectator) and system features such as Game Creation, Gameplay, Post-game Analysis, Tournaments, and Leaderboards.
+![image](https://github.com/user-attachments/assets/8f6a6d21-ebdd-49cb-a128-b99f5fb2bae8)
+
+
+### **6.3 Abuse Case Diagram
+The Abuse Case Diagram identifies potential misuse or abuses that can occur in the system, such as cheating, chat abuse, and fake account creation. It also specifies actions that can be taken by admins in response to these abuses.
+
+
+![image](https://github.com/user-attachments/assets/fd808227-3ffe-43da-af0b-a6f7f9e32c0b)
+
+
+### **6.4 Error Case Diagram
+This Error Case Diagram illustrates common errors that may arise during normal operation, including issues such as login failures, game creation errors, connection losses, and game state synchronization failures.
+
+
+![image](https://github.com/user-attachments/assets/db916160-53c8-4854-bcac-a4c7eb855188)
+
