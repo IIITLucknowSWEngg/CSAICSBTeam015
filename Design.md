@@ -191,6 +191,9 @@ The Chess.com Clone uses a NoSQL database (e.g., MongoDB) to manage game data. T
 
 ### 5.2 **Entity-Relationship Diagram**
 
+![image](https://github.com/user-attachments/assets/5181fc2e-f5d3-4484-9d38-ee14d4ba8cc1)
+
+
 ```
 @startuml
 
