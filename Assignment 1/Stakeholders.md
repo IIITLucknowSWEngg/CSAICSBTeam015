@@ -1,5 +1,5 @@
 
-# Stakeholder Document  
+# Stakeholders Document  
 
 ## Introduction  
 
