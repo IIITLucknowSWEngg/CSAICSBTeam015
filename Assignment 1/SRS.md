@@ -1,186 +1,176 @@
-# **Software Requirements Specification (SRS)**
+---
 
-## **1. Introduction**
+# *Software Requirements Specification (SRS)*  
 
-### **1.1 Purpose**
-This document outlines the software requirements for the **Chess.com Clone**, providing guidance for the design, development, and testing of the system. It is intended for developers, testers, and stakeholders involved in the project.
+## *1. Introduction*  
 
-### **1.2 Scope**
-The **Chess.com Clone** is a web-based platform allowing users to:
-- Play real-time chess games against humans or AI.
-- Participate in tournaments.
-- View live matches and game statistics.
-- Track rankings based on the ELO rating system.
+### *1.1 Purpose*  
+The purpose of this document is to define the software requirements for the *Chess.com Competitor Platform*. It is intended for stakeholders, developers, and testers involved in creating a robust, secure, and engaging online chess platform. This document will serve as a guide for the platform’s design, development, and quality assurance processes.
 
-The project focuses on **web-based gameplay only**, excluding mobile apps and chess variants like Chess960.
+### *1.2 Scope*  
+The *Chess.com Competitor Platform* is a web-based application designed to provide a seamless chess-playing experience, integrating real-time gameplay, community engagement, and competitive features. Core functionalities include:  
+- Real-time chess games against human or AI opponents.  
+- Participation in tournaments with automated brackets.  
+- Leaderboards based on the ELO rating system.  
+- Tools for learning and analysis, including post-game reviews and move suggestions.  
+- Secure, scalable infrastructure with a user-friendly interface.  
 
-### **1.3 Definitions, Acronyms, and Abbreviations**
-- **SRS**: Software Requirements Specification  
-- **ELO**: A rating system used in chess to rank players based on their performance.
-- **API**: Application Programming Interface  
-- **AI**: Artificial Intelligence  
-- **UI**: User Interface  
-- **HTTPS**: Hypertext Transfer Protocol Secure  
-- **RESTful API**: Representational State Transfer API for web services
+The platform will emphasize compliance with chess regulations, scalability for 1,000+ concurrent users, and an engaging user experience. Mobile applications and non-standard chess variants like Chess960 are out of scope.
 
-### **1.4 References**
-- IEEE Std 830-1998, IEEE Recommended Practice for Software Requirements Specifications
-- SWEBOK v3.0, Software Engineering Body of Knowledge
-- Chess Rules and Regulations (FIDE)
-- User Requirements Document
+### *1.3 Definitions, Acronyms, and Abbreviations*  
+- *SRS*: Software Requirements Specification  
+- *ELO*: Chess ranking system based on player performance.  
+- *API*: Application Programming Interface  
+- *AI*: Artificial Intelligence  
+- *UI/UX*: User Interface/User Experience  
+- *HTTPS*: Hypertext Transfer Protocol Secure  
+- *WebSocket*: Real-time communication protocol  
 
-### **1.5 Overview**
-This document describes the functional and non-functional requirements of the **Chess.com Clone**. It includes details about the platform’s features, system functionalities, and external interfaces, along with performance and security requirements.
+### *1.4 References*  
+- FIDE Official [Chess Rules](https://handbook.fide.com/chapter/E012023)
+- IEEE Std 830-1998, IEEE Recommended Practice for Software Requirements Specifications  
+- [User Requirements Document](https://github.com/IIITLucknowSWEngg/CSAICSBTeam015/blob/main/Assignment%201/URD.md) (URD) for Chess Competitor Platform  
+- [Stakeholder Document](https://github.com/IIITLucknowSWEngg/CSAICSBTeam015/blob/main/Assignment%201/Stakeholders.md)  
+
+### *1.5 Overview*  
+This document details functional and non-functional requirements for the Chess Competitor Platform. The focus is on features defined in the URD and Stakeholder Register, including gameplay, tournament management, leaderboards, and compliance with security and data regulations.
 
 ---
 
-## **2. Overall Description**
+## *2. Overall Description*  
 
-### **2.1 Product Perspective**
-The Chess.com Clone is an **online chess platform** designed to facilitate real-time games, tournaments, and social interaction between players. It integrates standard chess mechanics, user profiles, ELO-based rankings, and live spectating.
+### *2.1 Product Perspective*  
+The platform is a *web-based chess platform* providing a competitive and interactive environment for players worldwide. It uses modern web technologies  tools to ensure an immersive experience. The platform integrates secure APIs, databases, and communication protocols.
 
-### **2.2 Product Functions**
-Key functionalities include:
-- **User Management:** Registration, login, and profile management.
-- **Chess Gameplay:** Real-time matches with human opponents or AI.
-- **Matchmaking:** Automatic matchmaking or manual game invitations.
-- **Live Spectating:** Users can spectate live games.
-- **Tournaments:** Organize and participate in tournaments with automated bracket management.
-- **Leaderboards:** Global rankings based on the ELO rating system.
-- **Post-game Analysis:** Review matches with move-by-move analysis.
+### *2.2 Product Functions*  
+Core functionalities include:  
+1. *Chess Gameplay:* Real-time matches with human or AI Bots.  
+2. *Tournaments:* Manual creation, management, and tracking of chess tournaments.  
+3. *Leaderboards:* Rankings based on ELO ratings for players and tournament participants.  
+4. *Learning Tools:* Post-game analysis and AI-driven basic tutorials.  
+5. *Community Engagement:* Spectating games, player profiles, and chat systems.  
 
-### **2.3 User Classes and Characteristics**
-- **Players:** Users who play chess matches and expect a seamless real-time experience.
-- **Administrators:** Manage user accounts, tournaments, and monitor community behavior.
-- **Spectators:** Watch live games without interacting in the gameplay.
+### *2.3 User Classes and Characteristics*  
+1. *Players:* Individuals who engage in chess games and tournaments.  
+2. *Spectators:* Users who watch live games and tournaments.  
+3. *Admins:* Manage user accounts, tournament logistics, and community moderation.  
 
-### **2.4 Operating Environment**
-The platform will run on **modern web browsers** (e.g., Google Chrome, Firefox, Safari) on both desktop and mobile devices, ensuring cross-platform compatibility.
+### *2.4 Operating Environment*  
+- Modern web browsers (Google Chrome, Firefox, Safari) on desktops and mobile devices, ensuring cross-platform compatibility.
 
-### **2.5 Design and Implementation Constraints**
-- **Web-based only:** No mobile app or offline support is provided.
-- **Compliance with Chess Rules:** Must follow **FIDE** chess rules strictly.
-- **Performance:** Must support up to **1000 concurrent users**.
+### *2.5 Design and Implementation Constraints*  
+- *Web-only:* No native mobile app support.  
+- *FIDE compliance:* The platform must adhere to standard chess rules.  
+- *Concurrency:* Support for at least 1,000 simultaneous players.  
 
----
-
-## **3. External Interface Requirements**
-
-### **3.1 User Interfaces**
-- **Login/Sign-up Page:** Simple forms with support for email and social media authentication.
-- **Dashboard:** Displays game history, active matches, tournaments, and leaderboards.
-- **Game Board:** Interactive chessboard for real-time gameplay.
-- **Admin Panel:** For managing users, games, and tournaments.
-
-### **3.2 Hardware Interfaces**
-The platform will be accessible from any device with an internet connection and a modern web browser. No specific hardware requirements are imposed beyond this.
-
-### **3.3 Software Interfaces**
-- **Database Integration:** Use of relational database (e.g., MySQL) for storing user data, game records, and rankings.
-- **Chess Engine API:** Integrates with a basic chess engine to handle AI opponents.
-- **WebSocket API:** For real-time communication during gameplay.
-
-### **3.4 Communication Interfaces**
-- **WebSocket:** Used for real-time updates in games and chats.
-- **HTTPS:** For secure data transmission.
-- **RESTful API:** For managing user authentication, game setup, and profile management.
+### *2.6 Assumptions and Dependencies*  
+- Stable internet connection is required for real-time features.  
+- All users have access to modern web browsers.  
 
 ---
 
-## **4. System Features**
+## *3. External Interface Requirements*  
 
-### **4.1 User Registration and Authentication**
-- **Description:** Users can register using their email or social media accounts and log in securely.
-- **Priority:** High
-- **Inputs:** Email, password, or social media credentials.
-- **Outputs:** Dashboard access with personal profile and game options.
+### *3.1 User Interfaces*  
+1. *Login/Registration Page:* Secure user authentication with social login options.  
+2. *Player Dashboard:* Displays active matches, leaderboard standings, and tournament participation.  
+3. *Game Interface:* Interactive chessboard with move validation, timer display, and chat.  
+4. *Admin Panel:* Tools for account and tournament management.  
 
-### **4.2 Game Creation and Matchmaking**
-- **Description:** Users can create new games with customizable time controls (e.g., Blitz, Rapid) or use automatic matchmaking.
-- **Priority:** High
-- **Inputs:** Game type, time control, AI or human opponent.
-- **Outputs:** Game board with opponent details and real-time updates.
+### *3.2 Hardware Interfaces*  
+- Devices with internet access and web browsers(latest recommended).  
 
-### **4.3 Real-Time Chess Gameplay**
-- **Description:** Players can engage in real-time chess games with live updates for moves and timing.
-- **Priority:** High
-- **Inputs:** Player moves via an interactive chessboard.
-- **Outputs:** Updated game state, checkmate, or draw notifications.
+### *3.3 Software Interfaces*  
+- *Chess Engine API:* For AI-powered practice and move validation.
+- *Database:* Non-Relational database [MongoDB] for user data, game history, and leaderboards.  
+- *WebSocket API:* For real-time game updates.  
 
-### **4.4 Post-Game Analysis**
-- **Description:** Players can review completed games with move-by-move analysis and receive suggestions for improvement.
-- **Priority:** Medium
-- **Inputs:** Game history data.
-- **Outputs:** Annotated moves with analysis.
-
-### **4.5 Leaderboards and ELO Ranking**
-- **Description:** ELO-based global leaderboard showing player rankings across various time controls.
-- **Priority:** Medium
-- **Inputs:** Match results and player ELO.
-- **Outputs:** Updated rankings displayed on the leaderboard.
-
-### **4.6 Tournaments**
-- **Description:** Support for organizing and participating in tournaments with automated bracket management.
-- **Priority:** Medium
-- **Inputs:** Tournament settings, participant registrations.
-- **Outputs:** Tournament brackets and progress tracking.
-
-### **4.7 Chat Functionality**
-- **Description:** In-game chat during matches and post-game discussions.
-- **Priority:** Low
-- **Inputs:** Chat messages.
-- **Outputs:** Real-time message delivery within the game.
+### *3.4 Communication Interfaces*  
+- *HTTPS:* For secure communication.  
+- *WebSocket Protocol:* For real-time gameplay and chat.  
 
 ---
 
-## **5. Non-Functional Requirements**
+## *4. System Features*  
 
-### **5.1 Performance**
-- The system must support **1000 concurrent users** without any noticeable performance degradation.
+### *4.1 User Registration and Authentication*  
+- *Description:* Secure user registration and login.  
+- *Priority:* High  
+- *Inputs:* Email, password, social media credentials.  
+- *Outputs:* Dashboard access.  
 
-### **5.2 Scalability**
-- The platform should be able to scale to accommodate a growing user base and increased load from tournaments.
+### *4.2 Real-Time Chess Gameplay*  
+- *Description:* Interactive chessboard for live matches.  
+- *Priority:* High  
+- *Inputs:* Player moves, game type (Blitz, Rapid, Classical).  
+- *Outputs:* Updated game state, win/draw notifications.  
 
-### **5.3 Security**
-- All user data must be stored and transmitted securely, using **HTTPS** and encrypted passwords.
-- **Multi-factor authentication (optional)** should be available for enhanced security.
+### *4.3 Tournament Management*  
+- *Description:* Create and manage tournaments with automated brackets.  
+- *Priority:* Medium  
+- *Inputs:* Player registrations, tournament rules.  
+- *Outputs:* Tournament progress, results, and standings.  
 
-### **5.4 Usability**
-- The user interface must be intuitive, responsive, and accessible to players of all skill levels.
-- **Responsive Design** is required to ensure compatibility across both desktop and mobile browsers.
+### *4.4 Leaderboards*  
+- *Description:* Display ELO-based rankings.  
+- *Priority:* Medium  
+- *Inputs:* Match results.  
+- *Outputs:* Updated player rankings.  
 
-### **5.5 Availability**
-- The system should aim for **99.9% uptime** to ensure a reliable gaming experience for users.
+### *4.5 Post-Game Analysis*  
+- *Description:* Analyze completed games and provide move suggestions.  
+- *Priority:* Low  
+- *Inputs:* Game history.  
+- *Outputs:* Annotated moves with analysis.  
 
-### **5.6 Maintainability**
-- The codebase should be **modular and well-documented** to allow for future improvements and maintenance.
-
-### **5.7 Compliance**
-- The platform must adhere to applicable **data privacy laws** (e.g., GDPR) to protect user information.
+### *4.6 Spectating*  
+- *Description:* Allow users to watch live games and tournaments.  
+- *Priority:* Medium  
+- *Inputs:* Game selection.  
+- *Outputs:* Real-time board updates.  
 
 ---
 
-## **6. Appendices**
+## *5. Non-Functional Requirements*  
 
-### **6.1 Assumptions**
-- Users will access the platform via a stable internet connection.
-- Modern web browsers will be used, with no requirement for additional plugins or software.
+### *5.1 Performance*  
+- The platform must handle *1,000 concurrent users* with minimal latency.  
 
-###  **6.2 Use Case Diagram
+### *5.2 Scalability*  
+- Modular Architecture to be used.
+- The system will handle increased user traffic during peak times, such as tournaments.  
+- Additional resources will be allocated dynamically during high-demand periods to maintain performance.
+
+### *5.3 Security*  
+- *Encryption:* HTTPS for data transmission.  
+- *Authentication:* Secure login with multi-factor authentication.  
+
+### *5.4 Usability*  
+- Responsive design for desktops and mobile browsers.
+
+### *5.5 Availability*  
+- Ensure *99.99% uptime* for uninterrupted service.
+- Scheduled maintenance windows will be communicated in advance.  
+
+### *5.6 Compliance*  
+- *GDPR compliance* for user data handling. 
+
+### 5.7 Maintainability
+- Modular codebase for easier updates and bug fixes.  
+- Real-time error logging to identify and resolve issues promptly.  
+ 
+---
+
+## *6. Appendices*  
+
+### *6.1 Diagrams* 
+
+### *6.1.1 Use Case Diagram* 
+ 
 This detailed Use Case Diagram represents interactions between actors (Player, Admin, and Spectator) and system features such as Game Creation, Gameplay, Post-game Analysis, Tournaments, and Leaderboards.
-![image](https://github.com/user-attachments/assets/8f6a6d21-ebdd-49cb-a128-b99f5fb2bae8)
 
+### *6.1.2 Abuse Case Diagram* 
 
-### **6.3 Abuse Case Diagram
-The Abuse Case Diagram identifies potential misuse or abuses that can occur in the system, such as cheating, chat abuse, and fake account creation. It also specifies actions that can be taken by admins in response to these abuses.
+### *6.1.3 Error Case Diagram* 
 
-
-![image](https://github.com/user-attachments/assets/fd808227-3ffe-43da-af0b-a6f7f9e32c0b)
-
-
-### **6.4 Error Case Diagram
-This Error Case Diagram illustrates common errors that may arise during normal operation, including issues such as login failures, game creation errors, connection losses, and game state synchronization failures.
-
-
-![image](https://github.com/user-attachments/assets/db916160-53c8-4854-bcac-a4c7eb855188)
-
+---
