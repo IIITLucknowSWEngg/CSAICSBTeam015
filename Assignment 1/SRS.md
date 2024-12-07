@@ -94,43 +94,52 @@ Core functionalities include:
 ## 4. System Features
 
 ### 4.1 User Registration and Authentication
-- Description: Secure user registration and login.  
-- Priority: High  
-- Inputs: Email, password, social media credentials.  
-- Outputs: Dashboard access.  
+- **Description:** Secure user registration and login.  
+- **Priority:** High  
+- **Inputs:** Email, password, social media credentials.  
+- **Outputs:** Dashboard access.  
 
 ### 4.2 Real-Time Chess Gameplay
-- Description: Interactive chessboard for live matches.  
-- Priority: High  
-- Inputs: Player moves, game type (Blitz, Rapid, Classical).  
-- Outputs: Updated game state, win/draw notifications.  
+- **Description:** Interactive chessboard for live matches.  
+- **Priority:** High  
+- **Inputs:** Player moves, game type (Blitz, Rapid, Classical).  
+- **Outputs:** Updated game state, win/draw notifications.  
 
 ### 4.3 Tournament Management
-- Description: Create and manage tournaments with automated brackets.  
-- Priority: Medium  
-- Inputs: Player registrations, tournament rules.  
-- Outputs: Tournament progress, results, and standings.  
+- **Description:** Create and manage tournaments with automated brackets.  
+- **Priority:** Medium  
+- **Inputs:** Player registrations, tournament rules.  
+- **Outputs:** Tournament progress, results, and standings.  
 
 ### 4.4 Leaderboards
-- Description: Display ELO-based rankings.  
-- Priority: Medium  
-- Inputs: Match results.  
-- Outputs: Updated player rankings.  
+- **Description:** Display ELO-based rankings.  
+- **Priority:** Medium  
+- **Inputs:** Match results.  
+- **Outputs:** Updated player rankings.  
 
-### 4.5 Post-Game Analysis
-- Description: Analyze completed games and provide move suggestions.  
-- Priority: Low  
-- Inputs: Game history.  
-- Outputs: Annotated moves with analysis.  
+### 4.5 Chatting with Others
+- **Description:** Real-time chat system for players and users.  
+- **Priority:** Medium  
+- **Features:**  
+  - In-game chat for casual discussions or match-related conversations between opponents.  
+  - Private messaging for communication with other users outside of games.  
+  - Moderation tools to ensure a respectful and positive environment, including keyword filtering and user reporting mechanisms.  
+- **Inputs:** Messages from users.  
+- **Outputs:** Delivered messages, chat logs, moderation alerts.  
 
-### 4.6 Spectating
-- Description: Allow users to watch live games and tournaments.  
-- Priority: Medium  
-- Inputs: Game selection.  
-- Outputs: Real-time board updates.  
+### 4.6 Post-Game Analysis
+- **Description:** Analyze completed games and provide move suggestions.  
+- **Priority:** Low  
+- **Inputs:** Game history.  
+- **Outputs:** Annotated moves with analysis.  
+
+### 4.7 Spectating
+- **Description:** Allow users to watch live games and tournaments.  
+- **Priority:** Medium  
+- **Inputs:** Game selection.  
+- **Outputs:** Real-time board updates.  
 
 ---
-
 ## 5. Non-Functional Requirements
 
 ### 5.1 Performance
