@@ -2,81 +2,150 @@
 
 ## 1. **System Context Diagram**
 
-![PHOTO-2024-11-18-14-29-23](https://github.com/user-attachments/assets/ba3a109e-8a9f-4eea-9ff3-75142b691e1e)
+![SystemContext1](https://github.com/user-attachments/assets/c3491ab7-0afe-4937-b812-12d6ca7a9c45)
 
 ```plantuml
 @startuml
-' External Actors
-actor "Player (User)" as Player
-actor "Admin" as Admin
-actor "Chess AI" as ChessAI
-actor "Notification Service" as NotificationService
+' External Actors with Colors
+actor "Player" as Player #LightBlue
+actor "Spectator" as Spectator #LightGreen
+actor "Admin" as Admin #LightYellow
+actor "AI Chess Bot" as AIChessBot #Orange
 
-' System Boundary: Chess Clone App
-package "Chess Clone App" {
-
-    ' Subsystems
-    rectangle "User Authentication \nand Profile Management" as AuthSystem
-    rectangle "Game Lobby \nand Matchmaking" as GameLobby
-    rectangle "Chess Gameplay Engine" as GameplayEngine
-    rectangle "Leaderboard \nand Statistics" as Leaderboard
-    rectangle "In-Game Chat" as ChatSystem
-    rectangle "Admin Panel" as AdminPanel
+' System Boundary: Chess.com Competitor with Colors
+package "Chess.com Competitor" #LightGray {
+    
+    ' Subsystems with distinct colors
+    rectangle "User Registration \nand Authentication" as Registration #A9DCDF
+    rectangle "Game Management" as GameManagement #FFDDC1
+    rectangle "Spectator Mode" as SpectatorMode #C2E9FF
+    rectangle "Admin Panel" as AdminPanel #F7A8B8
+    rectangle "Leaderboard and Stats" as Leaderboard #C3E6CB
+    rectangle "In-App Chat \nand Support" as ChatSupport #FFABAB
+    rectangle "Real-Time Match Tracking" as MatchTracking #D9A6FF
+    rectangle "Tournaments" as Tournaments #FFC3A0
 }
 
-' Relationships between actors and system components
-Player --> AuthSystem : Sign Up/Login
-Player --> GameLobby : Join/Create Match
-Player --> GameplayEngine : Play Chess
+' Relationships between actors and system components with clear paths
+Player --> Registration : Sign Up/Login
+Player --> GameManagement : Play with AI / Play with other Players
 Player --> Leaderboard : View Rankings
-Player --> ChatSystem : Chat in Matches
+Player --> ChatSupport : Chat with Opponents
+Player --> Tournaments : Participate in Tournaments
+Player --> SpectatorMode : Watch Games
 
-Admin --> AdminPanel : Manage Users and Games
-GameplayEngine --> ChessAI : Access AI Moves
-GameplayEngine --> NotificationService : Notify Players
+AIChessBot --> GameManagement : Simulate AI Matches
+
+Spectator --> SpectatorMode : Watch Games
+Spectator --> Leaderboard : View Rankings
+
+Admin --> AdminPanel : Monitor Platform
+Admin --> ChatSupport : Resolve User Issues
+Admin --> Tournaments : Oversee Tournament Management
+
+GameManagement --> MatchTracking : Monitors Matches
+Tournaments --> MatchTracking : Tracks Live Tournament Matches
 @enduml
 ```
 
 ---
 ## 2. **Conatiner Diagram**
-![PHOTO-2024-11-18-14-30-11](https://github.com/user-attachments/assets/8b6d55c7-ca97-4f4a-9903-cd03877866fb)
+
+### 2.1. **Container Diagram for Players**
+
+![image](https://github.com/user-attachments/assets/ed404e75-1cf6-4d36-9320-e0439a60de07)
+
 
 ```plantuml
 @startuml
-title Container Diagram - Chess Clone
+!define RECTANGLE rectangle
 
-' Add primary containers
-rectangle "Web/Mobile App" as App <<User Interface>> #lightblue
-rectangle "API Gateway" as APIGateway <<API Gateway>> #lightgreen
-rectangle "Game Engine Service" as GameEngine <<Service>> #lightyellow
-rectangle "User Service" as UserService <<Service>> #lightyellow
-rectangle "Leaderboard Service" as LeaderboardService <<Service>> #lightyellow
-rectangle "Chat Service" as ChatService <<Service>> #lightyellow
+title Container Diagram - Player
 
-' Database containers
-database "Game Database" as GameDB <<Database>> #lightpink
-database "User Database" as UserDB <<Database>> #lightpink
-database "Leaderboard Database" as LeaderboardDB <<Database>> #lightpink
+' Primary containers for the Player's system experience
+RECTANGLE "Player Web Application" as playerWebApp <<Web Application>> #a2d5ff
+RECTANGLE "Player API Gateway" as playerGateway <<API Gateway>> #f0f8ff
 
-' External services
-rectangle "Notification Service" as NotificationService <<External Service>> #lightgray
+' Services for Player operations with distinct colors
+RECTANGLE "Authentication Service" as authService <<Service>> #b2dfc0
+RECTANGLE "Game Service" as gameService <<Service>> #cce5ff
+RECTANGLE "AI Chess Bot Service" as aiChessBotService <<Service>> #ffa07a
+RECTANGLE "Leaderboard Service" as leaderboardService <<Service>> #d0e7ff
+RECTANGLE "Chat Service" as chatService <<Service>> #f4a261
+RECTANGLE "Tournaments Service" as tournamentsService <<Service>> #d5a6bd
 
-' Relationships between containers
-App --> APIGateway : API Requests
-APIGateway --> UserService : Manage Users
-APIGateway --> GameEngine : Game Logic
-APIGateway --> LeaderboardService : Rankings
-APIGateway --> ChatService : Messaging
-APIGateway --> NotificationService : Player Notifications
+' Databases below their respective services
+RECTANGLE "MongoDB: User Info" as userDB <<Database>> #ffd700
+RECTANGLE "MongoDB: Game Progress" as gameDB <<Database>> #ffec40
+RECTANGLE "MongoDB: Leaderboard Data" as leaderboardDB <<Database>> #c3e6cb
+RECTANGLE "MongoDB: Tournaments Data" as tournamentsDB <<Database>> #b3d9ff
+RECTANGLE "MongoDB: AI Bot Data" as aiBotDB <<Database>> #ff99c8
 
-GameEngine --> GameDB : Read/Write Games
-UserService --> UserDB : Manage User Data
-LeaderboardService --> LeaderboardDB : Update Rankings
+' Relationships for web app and system components
+playerWebApp --> playerGateway : "API Requests"
+playerGateway --> authService : "Sign Up/Login"
+playerGateway --> gameService : "Matchmaking/Play with AI or other Players"
+playerGateway --> aiChessBotService : "AI Moves/Decision Making"
+playerGateway --> leaderboardService : "Retrieve Leaderboard Stats"
+playerGateway --> chatService : "Enable Chat"
+playerGateway --> tournamentsService : "Register/Participate in Tournaments"
 
+' Service interactions with their respective databases
+authService --> userDB : "User Authentication & Data"
+gameService --> gameDB : "Track Game Progress"
+aiChessBotService --> aiBotDB : "Fetch AI Logic & Decisions"
+leaderboardService --> leaderboardDB : "Leaderboard Stats"
+tournamentsService --> tournamentsDB : "Tournament Registrations & Progress"
 @enduml
 ```
 
 ---
+
+### 2.2. **Container Diagram for Admins**
+
+![image](https://github.com/user-attachments/assets/c63c7df6-3200-49fd-b574-18cabed21822)
+
+```plantuml
+@startuml
+!define RECTANGLE rectangle
+
+title Container Diagram - Admin
+
+' Primary containers for the Admin's system operations
+RECTANGLE "Admin Web Application" as adminWebApp <<Web Application>> #b3e5fc
+RECTANGLE "Admin API Gateway" as adminGateway <<API Gateway>> #e1f5fe
+
+' Admin services with distinct colors
+RECTANGLE "Admin Panel Service" as adminPanelService <<Service>> #c8e6c9
+RECTANGLE "User Management Service" as userManagementService <<Service>> #dcedc8
+RECTANGLE "Tournament Management Service" as tournamentManagementService <<Service>> #ffccbc
+RECTANGLE "User Support Service" as userSupportService <<Service>> #f8bbd0
+RECTANGLE "Analytics & Monitoring Service" as analyticsMonitoringService <<Service>> #ffe0b2
+
+' Databases for the Admin system
+RECTANGLE "MongoDB: User Info" as userDB <<Database>> #ffd700
+RECTANGLE "MongoDB: Tournament Data" as tournamentDB <<Database>> #ffcdd2
+RECTANGLE "MongoDB: User Reports" as userReportsDB <<Database>> #f0f4c3
+RECTANGLE "MongoDB: Admin Analytics Data" as adminAnalyticsDB <<Database>> #bbdefb
+
+' Relationships for admin web app and system components
+adminWebApp --> adminGateway : "Admin Actions"
+adminGateway --> adminPanelService : "Access Admin Panel"
+adminGateway --> userManagementService : "Manage Users"
+adminGateway --> tournamentManagementService : "Manage Tournaments"
+adminGateway --> userSupportService : "Handle User Reports"
+adminGateway --> analyticsMonitoringService : "View Game Analytics & Reports"
+
+' Service interactions with their respective databases
+userManagementService --> userDB : "Fetch/Update User Data"
+tournamentManagementService --> tournamentDB : "Manage Tournaments Data"
+userSupportService --> userReportsDB : "Store & Process Requests"
+analyticsMonitoringService --> adminAnalyticsDB : "Retrieve Game Reports & Logs"
+@enduml
+```
+
+---
+
 
 ## 3. **Component Diagram**
 
