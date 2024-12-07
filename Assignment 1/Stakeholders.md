@@ -1,20 +1,142 @@
-# **Stakeholders Overview**
 
-This document outlines the key stakeholders involved in the Chess.com clone project by Software Samurais. Stakeholders include individuals, groups, and organizations that are affected by or have an interest in the project’s success.
+# Stakeholders Document  
 
-| **Key Stakeholders**              | **Role**                                                             | **Responsibilities**                                                                                             | **Impact**                                                                   |
-|-----------------------------------|-----------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------|
-| **Project Team (Software Samurais)**|                                                                       |                                                                                                                  |                                                                              |
-| Yeggoni Ranadeep, Devisetty Siri Maya Lalitha, Annam Radesh, Pesara Pranilash Reddy, Nithin Sagili (Developers) | Responsible for coding, testing, and implementing the platform.       | - Developing the application.<br>- Managing front-end and back-end development.<br>- Creating game logic, UI, database management, and API integrations. | High - Quality of code impacts project success.                              |
-| Project Manager       | Oversees project timeline and execution.                              | - Managing project tasks and assignments.<br>- Ensuring adherence to schedule and scope.<br>- Main contact point between stakeholders and developers.    | High - Central role in project management.                                   |
-| **Product Stakeholders**          |                                                                       |                                                                                                                  |                                                                              |
-| Users                             | Individuals using the application.                                    | - Providing feedback on usability and functionality.<br>- Engaging with the platform based on their needs.        | High - User satisfaction determines the success of the project.              |
-| Chess Clubs                       | Community-driven groups or institutions.                              | - Organizing tournaments.<br>- Engaging users through club activities.                                           | Medium - Can influence user engagement and community building.               |
-| **External Stakeholders**         |                                                                       |                                                                                                                  |                                                                              |
-| Investors or Sponsors             | Provide financial or technical support.                               | - Offering funding or resources in exchange for revenue share or partnership benefits.                            | High - Financial backing determines project viability.                       |
-| Chess Organizations               | Collaborate for tournaments and events.                               | - Partnering for official rankings and events.<br>- Promoting the platform in the chess community.                | Medium - Can enhance platform credibility and reach.                         |
-| Content Creators                  | Use the platform for creating chess-related content.                   | - Producing content such as streams or analysis.<br>- Promoting the platform through social media channels.       | Medium - Can drive user acquisition through visibility.                      |
-| Developers Community              | Contribute to open-source enhancements.                               | - Providing code enhancements, bug fixes, and feedback.<br>- Engaging with the community for improvements.        | Medium - Can help in adding features and improving platform quality.         |
-| **Regulatory Stakeholders**       |                                                                       |                                                                                                                  |                                                                              |
-| Data Privacy and Security Authorities | Ensure compliance with data privacy laws.                          | - Overseeing adherence to global/regional data privacy regulations (e.g., GDPR).<br>- Ensuring secure handling of user data. | High - Compliance is critical for the platform’s legal operation.            |
-| Online Gaming and E-Sports Associations | Ensure compliance with gaming regulations.                     | - Monitoring adherence to online gaming guidelines.<br>- Ensuring fair play standards.                            | Medium - Regulatory compliance is essential for the platform’s legitimacy.   |
+## Introduction  
+
+This document provides a comprehensive **Stakeholder Register** for the **Chess Competitor Project**. Stakeholders are individuals, teams, or entities with a vested interest in or influence over the project. Categorizing them helps ensure effective communication, collaboration, and alignment of goals, contributing to the project’s success.  
+
+---
+
+## Stakeholder Register Table  
+
+| **Stakeholder**               | **Role**                                       | **Responsibilities**                                              | **Priority** | **Interest** | **Category**    |
+|-------------------------------|-----------------------------------------------|------------------------------------------------------------------|---------------|--------------|----------------|
+| **Managing Team**             | Monitors strategic planning and execution     | Ensures project goals are met; monitors progress                 | High          | High         | Internal       |
+| **Development Team**          | Builds and maintains the platform             | Implements core features, resolves technical issues              | High          | High         | Internal       |
+| **UI/UX Designers**           | Create engaging designs                      | Design intuitive interfaces; ensure user accessibility           | Medium        | High         | Internal       |
+| **Beta Testers**              | Provide user feedback                        | Test features, suggest improvements, identify issues             | Medium        | Medium       | Internal       |
+| **Owner**                     | Ensures alignment with the vision            | Guides overall direction, ensures funding and resource availability | High          | High         | Internal       |
+| **Security Auditing Team**    | Ensures data and platform security           | Conduct audits, identify vulnerabilities, maintain privacy       | High          | High         | Internal       |
+| **End Users (Players)**       | Engage with the platform                     | Play chess, provide feedback                                     | High          | High         | Product        |
+| **Small-Scale Admins**        | Monitor operations in specific regions       | Manage user concerns, monitor local tournaments                 | Medium        | High         | Product        |
+| **Large-Scale Admins**        | Monitor large-scale activities               | Coordinate tournaments, enforce platform rules                   | High          | High         | Product        |
+| **Investors/Sponsors**        | Provide financial support                    | Ensure funding, track progress, and ROI                          | High          | High         | External       |
+| **Chess Organizations**       | Promote and support chess-related activities | Collaborate for tournaments, training, and content               | Medium        | High         | External       |
+| **Open-Source Contributors**  | Collaborate on specific features             | Offer expertise for integration or unique platform enhancements  | Medium        | Medium       | External       |
+| **Data and Privacy Authorities** | Ensure compliance with regulations          | Monitor data handling, enforce privacy laws                      | High          | High         | Regulatory     |
+| **Chess Regulatory Board**    | Standardize chess rules and regulations      | Certify tournaments, guide fair play policies                    | High          | Medium       | Regulatory     |  
+
+---
+
+## Internal Stakeholders  
+
+### 1. **Managing Team**  
+- **Role:** Monitors the project's overall strategy and execution.  
+- **Responsibilities:**  
+  - Defines objectives and timelines.  
+  - Monitors progress and ensures alignment with goals.  
+  - Allocates resources effectively.  
+
+### 2. **Development Team**  
+- **Role:** Implements features and resolves technical issues.  
+- **Responsibilities:**  
+  - Develops game mechanics and backend systems.  
+  - Ensures a smooth user experience.  
+  - Addresses bugs and performance concerns.  
+
+### 3. **UI/UX Designers**  
+- **Role:** Design user-friendly and visually appealing interfaces.  
+- **Responsibilities:**  
+  - Create layouts that engage users.  
+  - Optimize designs based on user feedback.  
+  - Test interfaces for accessibility and clarity.  
+
+### 4. **Beta Testers**  
+- **Role:** Provide feedback on features and usability.  
+- **Responsibilities:**  
+  - Identify potential issues or glitches.  
+  - Suggest practical improvements.  
+  - Test new updates before release.  
+
+### 5. **Owner**  
+- **Role:** Monitors the vision and ensures resources are in place.  
+- **Responsibilities:**  
+  - Guides the team toward strategic goals.  
+  - Secures funding and partnerships.  
+  - Makes key decisions on project direction.  
+
+### 6. **Security Auditing Team**  
+- **Role:** Ensures the platform and user data are secure.  
+- **Responsibilities:**  
+  - Identify vulnerabilities through regular audits.  
+  - Suggest security upgrades and compliance measures.  
+  - Monitor potential data privacy risks.  
+
+---
+
+## Product Stakeholders  
+
+### 1. **End Users (Players)**  
+- **Role:** Use the platform to play chess.  
+- **Responsibilities:**  
+  - Provide feedback on the interface and features.  
+  - Participate in community activities.  
+
+### 2. **Small-Scale Admins**  
+- **Role:** Monitor operations and concerns in specific areas.  
+- **Responsibilities:**  
+  - Manage local tournaments.  
+  - Address region-specific issues or feedback.  
+  - Ensure smooth platform operations in their area.  
+
+### 3. **Large-Scale Admins**  
+- **Role:** Monitor overarching operations and rules.  
+- **Responsibilities:**  
+  - Organize large-scale tournaments.  
+  - Enforce platform rules.  
+  - Work with global chess organizations to ensure standardization.  
+
+---
+
+## External Stakeholders  
+
+### 1. **Investors/Sponsors**  
+- **Role:** Provide funding and financial support.  
+- **Responsibilities:**  
+  - Monitor project milestones.  
+  - Ensure a return on investment.  
+  - Offer guidance on scaling the platform.  
+
+### 2. **Chess Organizations**  
+- **Role:** Advocate for and support chess-related endeavors.  
+- **Responsibilities:**  
+  - Collaborate on tournaments and promotions.  
+  - Provide expert insights into the chess community.  
+  - Offer sponsorship or content for the platform.  
+
+### 3. **Open-Source Contributors**  
+- **Role:** Collaborate on specific platform features.  
+- **Responsibilities:**  
+  - Enhance the project with technical expertise.  
+  - Assist in integrating external tools or services.  
+  - Provide innovative solutions for complex challenges.  
+
+---
+
+## Regulatory Stakeholders  
+
+### 1. **Data and Privacy Authorities**  
+- **Role:** Ensure adherence to data protection and privacy laws.  
+- **Responsibilities:**  
+  - Monitor how user data is collected and stored.  
+  - Enforce compliance with international standards.  
+  - Provide recommendations for secure practices.  
+
+### 2. **Chess Regulatory Board**  
+- **Role:** Guide and regulate chess-related activities.  
+- **Responsibilities:**  
+  - Certify tournaments and platform credibility.  
+  - Standardize rules and ensure fair play.  
+  - Advocate for ethical practices in online chess.  
+
+---
