@@ -169,8 +169,25 @@ Core functionalities include:
  
 This detailed Use Case Diagram represents interactions between actors (Player, Admin, and Spectator) and system features such as Game Creation, Gameplay, Post-game Analysis, Tournaments, and Leaderboards.
 
+### *Player*
+![User Use Case](https://github.com/user-attachments/assets/44d73216-fc16-47cc-8fb6-a070c318503c)
+
+### *Spectator*
+![Spectator](https://github.com/user-attachments/assets/f9170c35-6c98-4b6b-ac51-da5264e2f1a1)
+
+### *Admin*
+![Admin Use Case](https://github.com/user-attachments/assets/2513b6a6-b0b4-4e00-b04f-aeb570d10eb4)
+
 ### *6.1.2 Abuse Case Diagram* 
+![Abuse Case Diagram(1)](https://github.com/user-attachments/assets/6d7eda44-eaee-404d-a3c8-3433d5666312)
 
 ### *6.1.3 Error Case Diagram* 
+![Error Case Diagram](https://github.com/user-attachments/assets/f150a04f-72f8-447f-9ebb-acf5998aafe1)
+
+---
+
+### *7. Conclusion*
+
+The SRS for the Chess.com Competitor Platform outlines a secure, scalable, and feature-rich online chess platform designed for players, spectators, and administrators. It ensures alignment on functional and non-functional requirements, focusing on real-time gameplay, tournaments, analysis, and leaderboards. This document provides a clear roadmap for delivering an engaging and reliable chess experience.
 
 ---
