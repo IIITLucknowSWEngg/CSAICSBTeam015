@@ -1,6 +1,4 @@
 
-
-```markdown
 # Test.md  
 
 ## Feature: User Registration and Authentication  
@@ -408,9 +406,10 @@ describe('Admin Security Settings', function() {
     expect(adminPage.getSuccessMessage()).to.equal('Two-factor authentication enabled successfully');
   });
 });
+
 ```
 
----
+
 
 
 
