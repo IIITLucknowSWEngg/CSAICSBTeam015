@@ -1,299 +1,267 @@
-# **Software Design Description (SDD)**
+# **Software Design Document (SDD)**
 
-## 1. **Introduction**
+## **1. Introduction**
 
-### 1.1 **Purpose**
-The purpose of this Software Design Description (SDD) is to provide a detailed design for the Chess.com Clone system. This document outlines the architecture, components, interfaces, and their interactions to ensure that the implementation meets the system's functional and non-functional requirements.
+### **1.1 Purpose**
+This document outlines the software design for a chess platform. It includes the system architecture, entity relationships, microservice details, subsystem interactions, and deployment strategy, aiming to provide clear guidance for the development of the platform.
 
-### 1.2 **Scope**
-The Chess.com Clone system enables users to play chess games online, create profiles, and compete in real-time matches. The system consists of the mobile/web application, backend services, game logic, player matchmaking, user authentication, payment processing, chat functionality, and external integrations such as chess AI engines for gameplay and notifications.
-
----
-
-## 2. **System Overview**
-
-The Chess.com Clone allows players to:
-- Play real-time chess games against other players or AI.
-- Chat with opponents during the game.
-- View leaderboards and track statistics.
-- Manage user profiles and settings.
-- Participate in tournaments and challenges.
-
-Admin users can:
-- Manage users and games.
-- View player statistics and reports.
-- Monitor in-game activities and resolve issues.
+### **1.2 Scope**
+The design covers the following:
+- **System Architecture**: Overview of frontend, backend, database, and services.
+- **Entity Relationship Diagram**: Representation of the entities and their relationships.
+- **Database Schema**: Detailed description of database collections.
+- **Subsystem Interaction**: Interaction between the system components.
+- **Deployment Strategy**: Overview of the deployment architecture.
 
 ---
 
-## 3. **System Architecture**
+## **2. System Overview**
 
-### 3.1 **System Context Diagram**
+The platform is a **web application** designed for both **mobile and desktop devices**. It uses a **microservices architecture** where each service handles a specific feature such as authentication, game management, tournament management, leaderboard, and real-time chat.
 
-![System Context Diagram](https://github.com/user-attachments/assets/ba3a109e-8a9f-4eea-9ff3-75142b691e1e)
+### **2.1 Key Components**
+- **Frontend**: Built using **React.js** for web-based access across devices.
+- **Backend**: Microservices built using **Node.js** with **Express**, communicating via RESTful APIs and WebSocket.
+- **Database**: **MongoDB** for storing user profiles, game history, tournament data, and chat messages.
+
+### **2.2 Deployment Strategy**
+The system will be deployed using **AWS** (Amazon Web Services) for scalable hosting. Docker will be used for containerization, providing a lightweight and portable deployment model.
+
+---
+
+## **3. System Architecture**
+
+### **3.1 Architectural Style**
+The platform follows a **microservices architecture** that separates different functionalities into independent services. This provides:
+- Scalability
+- Maintainability
+- Easy updates without affecting other services
+
+### **3.2 Components Overview**
+
+#### **Frontend**
+- **Technology**: **React.js** for web.
+- **Features**: 
+  - User authentication (sign-up, login)
+  - Real-time gameplay
+  - Chat during games
+  - Tournament management
+  - Leaderboard viewing
+
+#### **Backend (Microservices)**
+
+1. **Authentication Service**: Handles user authentication, registration, and session management.
+2. **Game Service**: Manages the gameplay, player moves, match states, and results.
+3. **Tournament Service**: Manages tournaments, player registrations, and match scheduling.
+4. **Leaderboard Service**: Tracks player performance, updating rankings based on ELO.
+5. **Chat Service**: Manages real-time messaging between players during games.
+
+#### **Database (MongoDB)**
+- Stores data in collections:
+  - **Users**: Stores user profiles.
+  - **Matches**: Stores match details such as player moves and results.
+  - **Tournaments**: Stores tournament details.
+  - **Leaderboard**: Stores player rankings.
+  - **Chat**: Stores messages exchanged during games.
+
+### **3.3 Communication**
+- **Frontend** communicates with the **Backend** via RESTful APIs for non-real-time operations (e.g., user authentication, game creation).
+- **WebSocket** is used for real-time interactions (e.g., gameplay, chat).
+- Microservices interact with the **Database** to store and retrieve information.
+
+---
+
+## **4. Entity Relationship Diagram (ERD)**
 
 ```plantuml
 @startuml
-' External Actors
-actor "Player (User)" as Player
-actor "Admin" as Admin
-actor "Chess AI" as ChessAI
-actor "Notification Service" as NotificationService
-
-' System Boundary: Chess Clone App
-package "Chess Clone App" {
-
-    ' Subsystems
-    rectangle "User Authentication \nand Profile Management" as AuthSystem
-    rectangle "Game Lobby \nand Matchmaking" as GameLobby
-    rectangle "Chess Gameplay Engine" as GameplayEngine
-    rectangle "Leaderboard \nand Statistics" as Leaderboard
-    rectangle "In-Game Chat" as ChatSystem
-    rectangle "Admin Panel" as AdminPanel
+entity "User" {
+  userId : String
+  username : String
+  password : String
+  avatar : String
+  ELO : Integer
+  history : Array
 }
 
-' Relationships between actors and system components
-Player --> AuthSystem : Sign Up/Login
-Player --> GameLobby : Join/Create Match
-Player --> GameplayEngine : Play Chess
-Player --> Leaderboard : View Rankings
-Player --> ChatSystem : Chat in Matches
+entity "Match" {
+  matchId : String
+  player1 : User
+  player2 : User
+  moves : Array
+  result : String
+}
 
-Admin --> AdminPanel : Manage Users and Games
-GameplayEngine --> ChessAI : Access AI Moves
-GameplayEngine --> NotificationService : Notify Players
+entity "Tournament" {
+  tournamentId : String
+  name : String
+  participants : Array<User>
+  matches : Array<Match>
+}
+
+entity "Leaderboard" {
+  rank : Integer
+  userId : String
+  ELO : Integer
+}
+
+entity "Chat" {
+  chatId : String
+  userId : String
+  message : String
+  timestamp : Date
+}
+
+User --> Match : participates in
+Match --> Tournament : part of
+Leaderboard --> User : updates for
+User --> Chat : sends/receives
 @enduml
 ```
 
+### **4.1 Entity Descriptions**
+
+1. **User**:
+   - **userId**: Unique identifier.
+   - **username**: The user's display name.
+   - **password**: The password for authentication.
+   - **avatar**: The user's avatar image.
+   - **ELO**: Player’s rating based on their game performance.
+   - **history**: A list of matches the user has played.
+
+2. **Match**:
+   - **matchId**: Unique match identifier.
+   - **player1**, **player2**: Players participating in the match.
+   - **moves**: A sequence of moves played in the game.
+   - **result**: The outcome (win, loss, or draw).
+
+3. **Tournament**:
+   - **tournamentId**: Unique tournament identifier.
+   - **name**: Tournament name.
+   - **participants**: List of players participating in the tournament.
+   - **matches**: List of matches in the tournament.
+
+4. **Leaderboard**:
+   - **rank**: The player’s rank in the leaderboard.
+   - **userId**: The identifier for the user.
+   - **ELO**: Player's ELO rating.
+
+5. **Chat**:
+   - **chatId**: Unique identifier for each message.
+   - **userId**: The ID of the user sending the message.
+   - **message**: Content of the chat message.
+   - **timestamp**: When the message was sent.
+
 ---
 
-### 3.2 **Container Diagram**
+## **5. Database Schema**
 
-#### **Player and Admin Containers**
-![image](https://github.com/user-attachments/assets/765d4ffd-85fa-42fb-8214-37aa9160c73a)
+The following collections will be present in the **MongoDB** database:
 
+1. **Users Collection**: Stores user information such as `userId`, `username`, `password`, `avatar`, `ELO`, and `history`.
+2. **Matches Collection**: Stores match data with `matchId`, `player1`, `player2`, `moves`, and `result`.
+3. **Tournaments Collection**: Stores tournament data including `tournamentId`, `name`, `participants`, and `matches`.
+4. **Leaderboard Collection**: Stores rankings with `rank`, `userId`, and `ELO`.
+5. **Chat Collection**: Stores chat messages with `chatId`, `userId`, `message`, and `timestamp`.
+
+---
+
+## **6. Microservices Breakdown**
+
+### **6.1 Authentication Service**
+- **Responsibilities**: Handles user login, registration, and session management.
+- **Endpoints**:
+  - `POST /register`: Registers a new user.
+  - `POST /login`: Logs a user in and returns a session token.
+  - `GET /profile`: Fetches user profile information.
+
+### **6.2 Game Service**
+- **Responsibilities**: Manages game creation, processing player moves, and determining match outcomes.
+- **Endpoints**:
+  - `POST /startGame`: Starts a new match.
+  - `POST /makeMove`: Processes a player’s move.
+  - `GET /gameStatus`: Retrieves the current status of a game.
+
+### **6.3 Tournament Service**
+- **Responsibilities**: Manages tournaments, player registrations, and match progress.
+- **Endpoints**:
+  - `POST /createTournament`: Creates a new tournament.
+  - `GET /tournamentStatus`: Fetches the status of a tournament.
+
+### **6.4 Leaderboard Service**
+- **Responsibilities**: Maintains and updates the leaderboard based on ELO ratings.
+- **Endpoints**:
+  - `GET /leaderboard`: Fetches the current leaderboard.
+
+### **6.5 Chat Service**
+- **Responsibilities**: Manages real-time chat between users during matches.
+- **Endpoints**:
+  - `POST /sendMessage`: Sends a message during gameplay.
+  - `GET /chatHistory`: Retrieves chat history.
+
+---
+
+## **7. Subsystem Interaction Diagram**
 
 ```plantuml
 @startuml
-!define RECTANGLE rectangle
-!define BOLD **<color:Black>**
+actor "User" as User
+participant "Frontend" as Frontend
+participant "Authentication Service" as AuthService
+participant "Game Service" as GameService
+participant "Tournament Service" as TournamentService
+participant "Leaderboard Service" as LeaderboardService
+participant "Chat Service" as ChatService
+participant "Database" as DB
 
-title Container Diagram - Chess Clone
+== User Login ==
+User -> Frontend : Enters login credentials
+Frontend -> AuthService : Sends login request
+AuthService -> DB : Checks user credentials
+DB -> AuthService : Returns user data
+AuthService -> Frontend : Returns authentication status
 
-' Add primary containers
-' User section
-RECTANGLE "Mobile App" as mobileApp <<Mobile Application>> #lightblue
-RECTANGLE "Web App" as webApp <<Web Application>> #lightblue
-RECTANGLE "User API Gateway" as userGateway <<API Gateway>> #lightblue
+== Start a New Game ==
+User -> Frontend : Selects opponent and starts game
+Frontend -> GameService : Sends game start request
+GameService -> DB : Records new match
+DB -> GameService : Confirms match creation
+GameService -> Frontend : Starts new game session
 
-' Backend services
-RECTANGLE "Game Service" as gameService <<Microservice>> #lightgreen
-RECTANGLE "User Service" as userService <<Microservice>> #lightgreen
-RECTANGLE "Payment Service" as paymentService <<Microservice>> #lightgreen
-RECTANGLE "Notification Service" as notificationService <<Microservice>> #lightgreen
+== Make a Move ==
+User -> Frontend : Makes a move in the game
+Frontend -> GameService : Sends move data
+GameService -> DB : Updates match state
+DB -> GameService : Confirms move update
+GameService -> Frontend : Updates game state
 
-' Database containers
-RECTANGLE "Game Database" as gameDB <<Database>> #lightyellow
-RECTANGLE "User Database" as userDB <<Database>> #lightyellow
-RECTANGLE "Payment Database" as paymentDB <<Database>> #lightyellow
+== Tournament Registration ==
+User -> Frontend : Joins a tournament
+Frontend -> TournamentService : Sends tournament registration
+TournamentService -> DB : Records player in tournament
+DB -> TournamentService : Confirms registration
+TournamentService -> Frontend : Confirms tournament participation
 
-' External systems
-RECTANGLE "External Payment System" as paymentSystem <<External System>> #pink
-RECTANGLE "Chess AI Engine" as chessAI <<External System>> #pink
-RECTANGLE "Push Notification Service" as pushNotification <<External System>> #pink
+== View Leaderboard ==
+User -> Frontend : Requests leaderboard
+Frontend -> LeaderboardService : Sends leaderboard request
+LeaderboardService -> DB : Fetches leaderboard data
+DB -> LeaderboardService : Returns leaderboard
+LeaderboardService -> Frontend : Displays leaderboard
 
-' Relationships between containers
-mobileApp --> userGateway : "API Calls"
-webApp --> userGateway : "API Calls"
-userGateway --> gameService : "Manage Games"
-userGateway --> userService : "Manage User Data"
-userGateway --> paymentService : "Process Payments"
-userGateway --> notificationService : "Send Notifications"
-
-gameService --> gameDB : "Read/Write Game Data"
-userService --> userDB : "Read/Write User Data"
-paymentService --> paymentDB : "Read/Write Payment Data"
-
-paymentService --> paymentSystem : "Process Payments"
-gameService --> chessAI : "Fetch AI Moves"
-notificationService --> pushNotification : "Send Push Notifications"
-
-@enduml
-```
-
----
-
-## 4. **Module Design**
-
-### 4.1 **Mobile/Web Application (Frontend)**
-
-#### 4.1.1 **User Interface (UI)**
-The UI will provide an intuitive and responsive experience, with the following components:
-- **Home Screen**: Displays navigation options and a summary of recent activities.
-- **Game Screen**: Displays the chessboard and game interactions.
-- **Profile Management**: Allows users to view and edit their profiles.
-- **Leaderboard**: Displays rankings and statistics of players.
-- **Matchmaking Screen**: Allows players to join or create matches.
-
-#### 4.1.2 **Controller Layer**
-The controller layer manages user requests and communicates with the backend services. It includes:
-- **Game Controller**: Manages game logic and moves.
-- **User Controller**: Handles user profile creation and authentication.
-- **Payment Controller**: Manages in-app purchases and payment processing.
-  
-#### 4.1.3 **Service Layer**
-The service layer is responsible for the business logic of the application, such as:
-- **Game Service**: Handles match creation, move validation, and game state management.
-- **User Service**: Manages player profiles, authentication, and account settings.
-- **Payment Service**: Handles all payment-related processes.
-- **Notification Service**: Sends notifications for game events.
-
----
-
-### 4.2 **Backend System (Server-side)**
-
-#### 4.2.1 **API Gateway**
-The API Gateway handles requests from the frontend and forwards them to the appropriate services.
-
-#### 4.2.2 **Authentication Service**
-Manages:
-- User registration
-- User login
-- Password reset functionality
-
-#### 4.2.3 **Game Management Service**
-Handles:
-- **Game Creation**: Allows users to initiate new games.
-- **Move Validation**: Ensures that moves made by players are valid according to the game rules.
-- **Game State**: Tracks the state of ongoing games, including player turns and win conditions.
-
-#### 4.2.4 **Leaderboard Service**
-Maintains player rankings and statistics, allowing users to view and track progress.
-
-#### 4.2.5 **Payment Service**
-Handles in-app purchases, such as premium accounts, and integrates with external payment systems.
-
-#### 4.2.6 **Notification Service**
-Manages sending notifications related to game events (e.g., match start, opponent's move, etc.).
-
----
-
-## 5. **Database Design**
-
-### 5.1 **Schema Overview**
-
-The Chess.com Clone uses a NoSQL database (e.g., MongoDB) to manage game data. The key entities in the database are:
-
-- **Users**: Stores information such as name, email, password, and profile settings.
-- **Games**: Stores details of ongoing and completed games, including moves, players, and game state.
-- **Payments**: Tracks user payments, including payment methods and transaction history.
-- **Leaderboard**: Stores player rankings and statistics.
-
-### 5.2 **Entity-Relationship Diagram**
-
-![image](https://github.com/user-attachments/assets/5181fc2e-f5d3-4484-9d38-ee14d4ba8cc1)
-
-
-```
-@startuml
-
-entity user {
-  *user_id: bigint(20)
-  username: varchar(40)
-  email: varchar(100)
-  password: varchar(100)
-  profile_picture: varchar(100)
-}
-
-entity game {
-  *game_id: bigint(20)
-  player_1_id: bigint(20)
-  player_2_id: bigint(20)
-  start_time: timestamp(3)
-  end_time: timestamp(3)
-  status: varchar(20)
-}
-
-entity move {
-  *move_id: bigint(20)
-  game_id: bigint(20)
-  player_id: bigint(20)
-  move_description: varchar(10)
-  timestamp: timestamp(3)
-}
-
-entity payment {
-  *payment_id: bigint(20)
-  user_id: bigint(20)
-  amount: decimal(10, 2)
-  date: timestamp(3)
-  payment_method: varchar(20)
-}
-
-entity leaderboard {
-  *leaderboard_id: bigint(20)
-  user_id: bigint(20)
-  rank: int(10)
-  points: int(10)
-}
-
-entity chat {
-  *chat_id: bigint(20)
-  game_id: bigint(20)
-  user_id: bigint(20)
-  message: varchar(255)
-  timestamp: timestamp(3)
-}
-
-user ||--o{ game: "player 1"
-user ||--o{ game: "player 2"
-game ||--o{ move
-game ||--o{ chat
-user ||--o{ payment
-user ||--o{ leaderboard
+== Send Chat Message ==
+User -> Frontend : Sends a message during the game
+Frontend -> ChatService : Sends chat message
+ChatService -> DB : Stores chat message
+DB -> ChatService : Confirms message storage
+ChatService -> Frontend : Displays message
 
 @enduml
 ```
 
 ---
 
-## 6. **Interface Design**
+## **8. Conclusion**
 
-### 6.1 **API Design**
-Below are some of the key API endpoints for interaction:
+This document provides a clear blueprint for the development of a modular, scalable chess platform with functionalities such as user authentication, matchmaking, tournaments, leaderboards, and real-time messaging. The architecture ensures a clear separation of concerns using **microservices**, making it easier to manage, scale, and extend as needed.
 
-- **POST /users/register**: User registration
-- **POST /users/login**: User login
-- **POST /games/start**: Start a new game
-- **POST /games/move**: Make a move in a game
-- **GET /games/status**: Get the status of a game
-- **GET /leaderboard**: Retrieve player rankings
-
-### 6.2 **External System Interfaces**
-- **Payment Gateway**: Handles transactions for premium features (e.g., Stripe, PayPal).
-- **Chess AI Engine**: Provides moves for AI-based gameplay.
-- **Push Notification Service**: Sends notifications to players (e.g., Firebase, Twilio).
-
----
-
-## 7. **Non-Functional Requirements**
-
-### 7.1 **Performance**
-The system should be capable of handling at least 5,000 concurrent users and ensure smooth gameplay.
-
-### 7.2 **Scalability**
-The backend system should support horizontal scalability to accommodate increasing traffic.
-
-### 7.3 **Availability**
-The system should maintain 99.9% uptime and provide failover mechanisms for critical components.
-
-### 7.4 **Security**
-- **Data Encryption**: All sensitive data, such as user passwords, should be encrypted.
-- **Two-Factor Authentication**: Implement multi-factor authentication for user accounts.
-
----
-
-## 8. **Conclusion**
-This Software Design Description outlines the architecture, modules, database, and interfaces for the Chess.com Clone system. The design ensures the system is robust, scalable, and secure, capable of supporting a growing user base and providing real-time gaming features.
-
---- 
