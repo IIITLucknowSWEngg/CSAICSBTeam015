@@ -49,7 +49,7 @@ Tournaments --> MatchTracking : Tracks Live Tournament Matches
 ```
 
 ---
-## 2. **Conatiner Diagram**
+## 2. **Container Diagram**
 
 ### 2.1. **Container Diagram for Players**
 
