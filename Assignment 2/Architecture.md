@@ -151,31 +151,78 @@ analyticsMonitoringService --> adminAnalyticsDB : "Retrieve Game Reports & Logs"
 
 ### 3.1. **Component Diagram for Players**
 
-![image](https://github.com/user-attachments/assets/43183bcf-5aae-4df1-b765-771b3c7faaa5)
+![image](https://github.com/user-attachments/assets/1f5befe9-f33a-4518-a457-686f918f9d03)
+
 
 
 ```plantuml
 @startuml
-' External Actor
-actor "Player" as Player
+!define RECTANGLE rectangle
 
-' System Boundary: Chess Clone App
-package "Chess Clone App" {
+title Component Diagram - Player
 
-    ' Subsystems for Player
-    rectangle "Authentication \nand Profile Management" as AuthSystem
-    rectangle "Game Lobby \nand Matchmaking" as GameLobby
-    rectangle "Chess Gameplay Engine" as GameplayEngine
-    rectangle "Leaderboard \nand Statistics" as Leaderboard
-    rectangle "In-Game Chat" as ChatSystem
+' Actor: Player
+actor "Player" as player #a2d5ff
+
+' Web Application Components
+package " Web Application" #f0f8ff {
+    RECTANGLE "Login Page" as loginPage <<Component>> #b2dfc0
+    RECTANGLE "Game Interface" as gameInterface <<Component>> #cce5ff
+    RECTANGLE "Leaderboard View" as leaderboardView <<Component>> #d0e7ff
+    RECTANGLE "Chat Window" as chatWindow <<Component>> #f4a261
+    RECTANGLE "Tournament Dashboard" as tournamentDashboard <<Component>> #d5a6bd
 }
 
-' Relationships between Player and system components
-Player --> AuthSystem : Sign Up/Login
-Player --> GameLobby : Join/Create Match
-Player --> GameplayEngine : Play Chess
-Player --> Leaderboard : View Rankings
-Player --> ChatSystem : Chat with Opponent
+' API Gateway Components
+RECTANGLE "API Request Handler" as apiHandler <<Component>> #f7d6e0
+
+' Service Components
+package "Player Services" #ffec40 {
+    RECTANGLE "Authentication Manager" as authManager <<Component>> #b2dfc0
+    RECTANGLE "Matchmaking Engine" as matchmakingEngine <<Component>> #cce5ff
+    RECTANGLE "AI Bot Manager" as aiBotManager <<Component>> #ffa07a
+    RECTANGLE "Leaderboard Manager" as leaderboardManager <<Component>> #d0e7ff
+    RECTANGLE "Chat Manager" as chatManager <<Component>> #f4a261
+    RECTANGLE "Tournament Manager" as tournamentManager <<Component>> #d5a6bd
+}
+
+' Databases for Player Data
+package "Databases" #ffd700 {
+    RECTANGLE "User Database" as userDB <<Database>> #ffd700
+    RECTANGLE "Game Database" as gameDB <<Database>> #ffec40
+    RECTANGLE "Leaderboard Database" as leaderboardDB <<Database>> #c3e6cb
+    RECTANGLE "Tournament Database" as tournamentDB <<Database>> #b3d9ff
+    RECTANGLE "AI Logic Database" as aiBotDB <<Database>> #ff99c8
+}
+
+' Relationships between Player and Web App
+player --> loginPage : "Log in"
+player --> gameInterface : "Play Games"
+player --> leaderboardView : "View Rankings"
+player --> chatWindow : "Chat with Opponents"
+player --> tournamentDashboard : "Manage Tournaments"
+
+' Web App to API Gateway
+loginPage --> apiHandler : "Submit Login Request"
+gameInterface --> apiHandler : "Send Game Actions"
+leaderboardView --> apiHandler : "Fetch Leaderboard Data"
+chatWindow --> apiHandler : "Send/Receive Messages"
+tournamentDashboard --> apiHandler : "Register/Track Progress"
+
+' API Gateway to Services
+apiHandler --> authManager : "Authentication Requests"
+apiHandler --> matchmakingEngine : "Matchmaking Requests"
+apiHandler --> aiBotManager : "Request AI Moves"
+apiHandler --> leaderboardManager : "Leaderboard Queries"
+apiHandler --> chatManager : "Handle Chat Requests"
+apiHandler --> tournamentManager : "Tournament Actions"
+
+' Services to Databases
+authManager --> userDB : "Fetch/Store User Data"
+matchmakingEngine --> gameDB : "Update Game Progress"
+aiBotManager --> aiBotDB : "Fetch AI Data"
+leaderboardManager --> leaderboardDB : "Update Leaderboard"
+tournamentManager --> tournamentDB : "Register Players"
 @enduml
 ```
 
@@ -183,31 +230,77 @@ Player --> ChatSystem : Chat with Opponent
 
 ### 3.2. **Component Diagram for Admins**
 
-![image](https://github.com/user-attachments/assets/b1dff844-96b9-485c-a57f-8199da55e4ca)
+![image](https://github.com/user-attachments/assets/e3c9dcd5-9edc-478d-9a35-cc85cce32c9b)
+
 
 
 ```plantuml
 @startuml
-' External Actor
-actor "Admin" as Admin
+!define RECTANGLE rectangle
 
-' System Boundary: Chess Clone Admin Panel
-package "Admin Panel" {
+title Component Diagram - Admin
 
-    ' Subsystems for Admin
-    rectangle "User Management" as UserManagement
-    rectangle "Game Monitoring" as GameMonitoring
-    rectangle "Leaderboard Management" as LeaderboardManagement
-    rectangle "Notification Management" as NotificationManagement
-    rectangle "Reports and Analytics" as ReportsAnalytics
+' Actor: Admin
+actor "Admin" as adminActor #b3e5fc
+
+'Web Application Components
+package "Web Application" #e1f5fe {
+    RECTANGLE "Login & Authentication Module" as loginModule <<Component>> #c8e6c9
+    RECTANGLE "Dashboard UI" as dashboardUI <<Component>> #ffccbc
+    RECTANGLE "User Management UI" as userManagementUI <<Component>> #dcedc8
+    RECTANGLE "Tournament Management UI" as tournamentManagementUI <<Component>> #ffccbc
+    RECTANGLE "User Reports UI" as userReportsUI <<Component>> #f8bbd0
+    RECTANGLE "Analytics Dashboard" as analyticsDashboard <<Component>> #ffe0b2
 }
 
-' Relationships between Admin and system components
-Admin --> UserManagement : Manage Users
-Admin --> GameMonitoring : Monitor Games
-Admin --> LeaderboardManagement : Manage Rankings
-Admin --> NotificationManagement : Send Notifications
-Admin --> ReportsAnalytics : Generate Reports
+' Admin API Gateway Components
+RECTANGLE "API Router" as apiRouter <<Component>> #f0f4c3
+
+' Admin Services Components
+package "Admin Services" #c8e6c9 {
+    RECTANGLE "Admin Panel Logic" as adminPanelLogic <<Component>> #c8e6c9
+    RECTANGLE "User Management Logic" as userManagementLogic <<Component>> #dcedc8
+    RECTANGLE "Tournament Management Logic" as tournamentManagementLogic <<Component>> #ffccbc
+    RECTANGLE "User Reports Processor" as userReportsProcessor <<Component>> #f8bbd0
+    RECTANGLE "Analytics Processor" as analyticsProcessor <<Component>> #ffe0b2
+}
+
+' Databases for Admin Data
+package "Databases" #ffd700 {
+    RECTANGLE "User Info Database" as userDB <<Database>> #ffd700
+    RECTANGLE "Tournament Database" as tournamentDB <<Database>> #ffcdd2
+    RECTANGLE "User Reports Database" as userReportsDB <<Database>> #f0f4c3
+    RECTANGLE "Analytics Database" as adminAnalyticsDB <<Database>> #bbdefb
+}
+
+' Relationships for Admin interaction
+adminActor --> loginModule : "Log In"
+adminActor --> dashboardUI : "Navigate Dashboard"
+adminActor --> userManagementUI : "Manage Users"
+adminActor --> tournamentManagementUI : "Manage Tournaments"
+adminActor --> userReportsUI : "Review User Reports"
+adminActor --> analyticsDashboard : "View Game Analytics & Reports"
+
+' Web App to API Router
+loginModule --> apiRouter : "Send Login Requests"
+dashboardUI --> apiRouter : "Fetch Dashboard Data"
+userManagementUI --> apiRouter : "User Management Actions"
+tournamentManagementUI --> apiRouter : "Tournament Actions"
+userReportsUI --> apiRouter : "User Reports Operations"
+analyticsDashboard --> apiRouter : "Analytics Queries"
+
+' API Router to Services
+apiRouter --> adminPanelLogic : "Route Admin Panel Requests"
+apiRouter --> userManagementLogic : "Route User Management Actions"
+apiRouter --> tournamentManagementLogic : "Route Tournament Requests"
+apiRouter --> userReportsProcessor : "Route User Reports Processing"
+apiRouter --> analyticsProcessor : "Route Analytics Queries"
+
+' Services to Databases
+userManagementLogic --> userDB : "Fetch/Update User Data"
+tournamentManagementLogic --> tournamentDB : "Fetch/Store Tournament Data"
+userReportsProcessor --> userReportsDB : "Process User Reports"
+analyticsProcessor --> adminAnalyticsDB : "Query Game Analytics"
 @enduml
 ```
 
@@ -216,44 +309,63 @@ Admin --> ReportsAnalytics : Generate Reports
 
 ## 4. **Deployment Diagram**
 
-![PHOTO-2024-11-18-14-32-28](https://github.com/user-attachments/assets/53b73b63-6112-4218-90c9-e74991e2dde1)
-.
+![image](https://github.com/user-attachments/assets/d89a2bf8-25ff-473c-bdb4-b1142a6a991f)
+
 
 ```plantuml
 @startuml
-title Deployment Diagram - Chess Clone
+!define RECTANGLE rectangle
 
-node "Player's Device" {
-    [Web/Mobile App] <<User Interface>>
+title Deployment Diagram - Chess.com Competitor
+
+' Nodes (Hardware)
+node "Player's Browser" as playerBrowser #a2d5ff
+node "Admin's Browser" as adminBrowser #c3e6cb
+
+node "AWS EC2 Web Server" as webServer #f9c74f {
+    artifact "Player Web Application" as playerWebApp <<Web Application>>
+    artifact "Admin Web Application" as adminWebApp <<Web Application>>
 }
 
-node "Server" {
-    [API Gateway] <<API Gateway>>
-    [Game Engine Service] <<Service>>
-    [User Service] <<Service>>
-    [Leaderboard Service] <<Service>>
-    [Chat Service] <<Service>>
+node "AWS ECS/API Server" as apiServer #90be6d {
+    artifact "Player API Gateway" as playerApiGateway <<API Gateway>>
+    artifact "Admin API Gateway" as adminApiGateway <<API Gateway>>
+    artifact "Authentication Service" as authService <<Service>>
+    artifact "Game Service" as gameService <<Service>>
+    artifact "Leaderboard Service" as leaderboardService <<Service>>
+    artifact "Tournament Service" as tournamentService <<Service>>
+    artifact "User Management Service" as userManagementService <<Service>>
+    artifact "User Reports Processor" as userReportsProcessor <<Service>>
 }
 
-node "Database Server" {
-    database "Game Database" as GameDB
-    database "User Database" as UserDB
-    database "Leaderboard Database" as LeaderboardDB
-}
-
-cloud "External Services" {
-    [Notification Service] <<External Service>>
+node "AWS DocumentDB" as dbServer #577590 {
+    database "MongoDB: User Data" as userDB #f4a261
+    database "MongoDB: Game Data" as gameDB #f4a261
+    database "MongoDB: Leaderboard Data" as leaderboardDB #f4a261
+    database "MongoDB: Tournament Data" as tournamentDB #f4a261
+    database "MongoDB: User Reports" as userReportsDB #f4a261
 }
 
 ' Connections
-[Web/Mobile App] --> [API Gateway] : API Calls
-[API Gateway] --> [Game Engine Service] : Handle Moves
-[API Gateway] --> [User Service] : Manage Profiles
-[API Gateway] --> [Leaderboard Service] : Rankings
-[API Gateway] --> [Chat Service] : Chat Messages
-[Game Engine Service] --> GameDB : Save Game Data
-[User Service] --> UserDB : User Data
-[Leaderboard Service] --> LeaderboardDB : Rankings
+playerBrowser --> playerWebApp : "HTTP/HTTPS Requests"
+adminBrowser --> adminWebApp : "HTTP/HTTPS Requests"
 
+playerWebApp --> playerApiGateway : "API Calls"
+adminWebApp --> adminApiGateway : "API Calls"
+
+playerApiGateway --> authService : "Authentication Requests"
+playerApiGateway --> gameService : "Game Actions"
+playerApiGateway --> leaderboardService : "Leaderboard Data"
+playerApiGateway --> tournamentService : "Tournament Data"
+
+adminApiGateway --> userManagementService : "User Management Actions"
+adminApiGateway --> tournamentService : "Manage Tournaments"
+adminApiGateway --> userReportsProcessor : "Process User Reports"
+
+authService --> userDB : "Query User Data"
+gameService --> gameDB : "Save/Load Game Progress"
+leaderboardService --> leaderboardDB : "Fetch Leaderboard Stats"
+tournamentService --> tournamentDB : "Register/Update Tournaments"
+userReportsProcessor --> userReportsDB : "Store & Retrieve Reports"
 @enduml
 ```
