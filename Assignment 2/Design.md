@@ -73,51 +73,8 @@ The platform follows a **microservices architecture** that separates different f
 
 ## **4. Entity Relationship Diagram (ERD)**
 
-```plantuml
-@startuml
-entity "User" {
-  userId : String
-  username : String
-  password : String
-  avatar : String
-  ELO : Integer
-  history : Array
-}
+![image](https://github.com/user-attachments/assets/efe525cd-c21c-42b0-8f3e-882125ce0e34)
 
-entity "Match" {
-  matchId : String
-  player1 : User
-  player2 : User
-  moves : Array
-  result : String
-}
-
-entity "Tournament" {
-  tournamentId : String
-  name : String
-  participants : Array<User>
-  matches : Array<Match>
-}
-
-entity "Leaderboard" {
-  rank : Integer
-  userId : String
-  ELO : Integer
-}
-
-entity "Chat" {
-  chatId : String
-  userId : String
-  message : String
-  timestamp : Date
-}
-
-User --> Match : participates in
-Match --> Tournament : part of
-Leaderboard --> User : updates for
-User --> Chat : sends/receives
-@enduml
-```
 
 ### **4.1 Entity Descriptions**
 
@@ -203,61 +160,8 @@ The following collections will be present in the **MongoDB** database:
 
 ## **7. Subsystem Interaction Diagram**
 
-```plantuml
-@startuml
-actor "User" as User
-participant "Frontend" as Frontend
-participant "Authentication Service" as AuthService
-participant "Game Service" as GameService
-participant "Tournament Service" as TournamentService
-participant "Leaderboard Service" as LeaderboardService
-participant "Chat Service" as ChatService
-participant "Database" as DB
+![image](https://github.com/user-attachments/assets/677cc4c1-cc41-44dd-8765-5bd40c9fc660)
 
-== User Login ==
-User -> Frontend : Enters login credentials
-Frontend -> AuthService : Sends login request
-AuthService -> DB : Checks user credentials
-DB -> AuthService : Returns user data
-AuthService -> Frontend : Returns authentication status
-
-== Start a New Game ==
-User -> Frontend : Selects opponent and starts game
-Frontend -> GameService : Sends game start request
-GameService -> DB : Records new match
-DB -> GameService : Confirms match creation
-GameService -> Frontend : Starts new game session
-
-== Make a Move ==
-User -> Frontend : Makes a move in the game
-Frontend -> GameService : Sends move data
-GameService -> DB : Updates match state
-DB -> GameService : Confirms move update
-GameService -> Frontend : Updates game state
-
-== Tournament Registration ==
-User -> Frontend : Joins a tournament
-Frontend -> TournamentService : Sends tournament registration
-TournamentService -> DB : Records player in tournament
-DB -> TournamentService : Confirms registration
-TournamentService -> Frontend : Confirms tournament participation
-
-== View Leaderboard ==
-User -> Frontend : Requests leaderboard
-Frontend -> LeaderboardService : Sends leaderboard request
-LeaderboardService -> DB : Fetches leaderboard data
-DB -> LeaderboardService : Returns leaderboard
-LeaderboardService -> Frontend : Displays leaderboard
-
-== Send Chat Message ==
-User -> Frontend : Sends a message during the game
-Frontend -> ChatService : Sends chat message
-ChatService -> DB : Stores chat message
-DB -> ChatService : Confirms message storage
-ChatService -> Frontend : Displays message
-
-@enduml
-```
 
 ---
 
