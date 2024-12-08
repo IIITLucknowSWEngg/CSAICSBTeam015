@@ -16,7 +16,7 @@ This document provides a comprehensive **Stakeholder Register** for the **Chess 
 | **Beta Testers**              | Provide user feedback                        | Test features, suggest improvements, identify issues             | Medium        | Medium       | Internal       |
 | **Owner**                     | Ensures alignment with the vision            | Guides overall direction, ensures funding and resource availability | High          | High         | Internal       |
 | **Security Auditing Team**    | Ensures data and platform security           | Conduct audits, identify vulnerabilities, maintain privacy       | High          | High         | Internal       |
-| **End Users (Players)**       | Engage with the platform                     | Play chess, provide feedback                                     | High          | High         | Product        |
+| **Players**       | Engage with the platform                     | Play chess, provide feedback                                     | High          | High         | Product        |
 | **System Admins**             | Monitor platform operations and tournaments  | Manage user concerns, organize tournaments, enforce rules        | High          | High         | Product        |
 | **Investors/Sponsors**        | Provide financial support                    | Ensure funding, track progress, and ROI                          | High          | High         | External       |
 | **Chess Organizations**       | Promote and support chess-related activities | Collaborate for tournaments, training, and content               | Medium        | High         | External       |
@@ -74,7 +74,7 @@ This document provides a comprehensive **Stakeholder Register** for the **Chess 
 
 ## Product Stakeholders  
 
-### 1. **End Users (Players)**  
+### 1. **Players**  
 - **Role:** Use the platform to play chess.  
 - **Responsibilities:**  
   - Provide feedback on the interface and features.  
