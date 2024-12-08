@@ -1,7 +1,7 @@
 
 # Test.md  
 
-## Feature: User Registration and Authentication  
+## Feature1: User Registration and Authentication  
 
 ### Scenario: Successful User Registration  
 **Given:**  
@@ -64,7 +64,7 @@ describe('User Login', function() {
 
 ---
 
-## Feature: Real-Time Chess Gameplay  
+## Feature2: Real-Time Chess Gameplay  
 
 ### Scenario: Player Makes a Move  
 **Given:**  
@@ -97,7 +97,7 @@ describe('Real-Time Gameplay', function() {
 
 ---
 
-## Feature: Tournament Management  
+## Feature3: Tournament Management  
 
 ### Scenario: Tournament Creation  
 **Given:**  
@@ -129,7 +129,7 @@ describe('Tournament Management', function() {
 
 ---
 
-## Feature: Leaderboards  
+## Feature4: Leaderboards  
 
 ### Scenario: Display Player Rankings  
 **Given:**  
@@ -158,7 +158,7 @@ describe('Leaderboards', function() {
 
 ---
 
-## Feature: Post-Game Analysis  
+## Feature5: Post-Game Analysis  
 
 ### Scenario: Analyze a Completed Game  
 **Given:**  
@@ -188,7 +188,7 @@ describe('Post-Game Analysis', function() {
 
 ---
 
-## Feature: Spectating  
+## Feature6: Spectating  
 
 ### Scenario: Watch a Live Game  
 **Given:**  
@@ -218,7 +218,7 @@ describe('Spectating', function() {
 
 ---
 
-## Feature: Security and Usability  
+## Feature7: Security and Usability  
 
 ### Scenario: Secure User Authentication  
 **Given:**  
@@ -247,7 +247,7 @@ describe('Security', function() {
 
 ---
 
-## Feature: Chat  
+## Feature8: Chat  
 
 ### Scenario: User Sends a Message  
 **Given:**  
@@ -281,7 +281,7 @@ describe('Chat Feature', function() {
 
 ---
 
-## Feature: Admin User Management  
+## Feature9: Admin User Management  
 
 ### Scenario: Admin Deactivates a User  
 **Given:**  
@@ -313,7 +313,7 @@ describe('Admin User Management', function() {
 
 ---
 
-## Feature: Admin Tournament Management  
+## Feature10: Admin Tournament Management  
 
 ### Scenario: Admin Cancels a Tournament  
 **Given:**  
@@ -377,7 +377,7 @@ describe('Admin Tournament Management', function() {
 
 ---
 
-## Feature: Admin Security Settings  
+## Feature11: Admin Security Settings  
 
 ### Scenario: Admin Configures Security Settings  
 **Given:**  
