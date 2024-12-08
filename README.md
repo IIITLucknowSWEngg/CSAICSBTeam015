@@ -9,7 +9,7 @@
 | 4    | Pesara Pranilash Reddy        | CSB        | LCB2023040       | pesarapranilash@gmail.com      | Pranilash              |
 | 5    | Annam Radesh                  | CSAI       | LCI2023020       | radeshannam@gmail.com          | Radesh07               |
 
-# Project Name : Chess.com Clone
+# Project Name : Chess.com Competitor
 
 # Link to the GitHub issue to record the Approval :
  **[Issue #14](https://github.com/IIITLucknowSWEngg/Assignment/issues/14)**
