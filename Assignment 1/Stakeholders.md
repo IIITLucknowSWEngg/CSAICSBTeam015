@@ -72,7 +72,7 @@ This document provides a comprehensive **Stakeholder Register** for the **Chess 
 
 ---
 
-## Product Stakeholders  
+## Production Login Stakeholders  
 
 ### 1. **Players**  
 - **Role:** Use the platform to play chess.  
