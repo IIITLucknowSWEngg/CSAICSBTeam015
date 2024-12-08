@@ -205,18 +205,18 @@ The Chess.com Competitor will be a web-based platform designed for online chess 
 ## **5. Non-Functional Requirements**
 
 ### **5.1 Performance, Scalability, and Availability**
-- I want the platform to work smoothly even if 1,000 people are using it at the same time, with no lag during my games.  
+- I want the platform to work smoothly with no lag during my games.  
 - During busy times, like tournaments, I expect the platform to handle the extra load without slowing down.  
-- I want the platform to be available almost all the time (99.99%), and if it needs maintenance, I want to be informed beforehand.  
+- I want the platform to be available almost all the time , and if it needs maintenance, I want to be informed beforehand.  
 
 ---
 
 ### **5.2 Security**
 I need the platform to be secure so I can play without worries:  
-- My data and activities should be safe with encrypted connections (HTTPS) so no one can steal or see my information.  
+- My data and activities should be safe so no one can steal or see my information.  
 - I want my login process to be secure, with strong password protection and easy recovery options.  
 - I want the platform to ensure fair play by detecting and stopping cheating.  
-- My personal details should be handled responsibly and follow strict privacy rules like GDPR.  
+- My personal details should be handled responsibly and follow strict privacy rules.  
 
 ---
 
