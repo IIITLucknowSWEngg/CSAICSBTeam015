@@ -2,145 +2,81 @@
 
 ## 1. **System Context Diagram**
 
-![SystemContext1](https://github.com/user-attachments/assets/c3491ab7-0afe-4937-b812-12d6ca7a9c45)
+![SYSTEM CONTEXT CHESS COM](https://github.com/user-attachments/assets/43b60fb9-e565-466f-a8cd-48c52c9bbd14)
+
 
 ```plantuml
 @startuml
-' External Actors with Colors
-actor "Player" as Player #LightBlue
-actor "Spectator" as Spectator #LightGreen
-actor "Admin" as Admin #LightYellow
-actor "AI Chess Bot" as AIChessBot #Orange
+!include https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Context.puml
 
-' System Boundary: Chess.com Competitor with Colors
-package "Chess.com Competitor" #LightGray {
-    
-    ' Subsystems with distinct colors
-    rectangle "User Registration \nand Authentication" as Registration #A9DCDF
-    rectangle "Game Management" as GameManagement #FFDDC1
-    rectangle "Spectator Mode" as SpectatorMode #C2E9FF
-    rectangle "Admin Panel" as AdminPanel #F7A8B8
-    rectangle "Leaderboard and Stats" as Leaderboard #C3E6CB
-    rectangle "In-App Chat \nand Support" as ChatSupport #FFABAB
-    rectangle "Real-Time Match Tracking" as MatchTracking #D9A6FF
-    rectangle "Tournaments" as Tournaments #FFC3A0
-}
+title System Context Diagram - Chess.com Competitor
 
-' Relationships between actors and system components with clear paths
-Player --> Registration : Sign Up/Login
-Player --> GameManagement : Play with AI / Play with other Players
-Player --> Leaderboard : View Rankings
-Player --> ChatSupport : Chat with Opponents
-Player --> Tournaments : Participate in Tournaments
-Player --> SpectatorMode : Watch Games
+Person(User, "Player", "Plays chess, chats, spectates")
+Person(Admin, "Administrator", "Manages tournaments and the platform")
+Person(Spectator, "Spectator", "Watches games and tournaments")
 
-AIChessBot --> GameManagement : Simulate AI Matches
+System(System, "Chess.com Competitor", "Provides chess gameplay, tournaments, and spectating")
 
-Spectator --> SpectatorMode : Watch Games
-Spectator --> Leaderboard : View Rankings
+System_Ext(SocialLogin, "Social Login Services", "Handles user authentication via social accounts")
+System_Ext(ChessEngine, "Chess Engine API", "Provides move validation and analysis")
+System_Ext(GDPR, "GDPR Authority", "Ensures compliance with data protection regulations")
 
-Admin --> AdminPanel : Monitor Platform
-Admin --> ChatSupport : Resolve User Issues
-Admin --> Tournaments : Oversee Tournament Management
+User -> System : "Play Chess, Chat, Spectate"
+Admin -> System : "Manage tournaments and platform"
+Spectator -> System : "Watch live games and tournaments"
+System -> SocialLogin : "Authenticate users"
+System -> ChessEngine : "Validate moves, provide analysis"
+System -> GDPR : "Compliance with data protection"
 
-GameManagement --> MatchTracking : Monitors Matches
-Tournaments --> MatchTracking : Tracks Live Tournament Matches
 @enduml
 ```
 
 ---
 ## 2. **Container Diagram**
 
-### 2.1. **Container Diagram for Players**
-
-![image](https://github.com/user-attachments/assets/ed404e75-1cf6-4d36-9320-e0439a60de07)
+![CHESS COM CONTAINER DIAGRAM](https://github.com/user-attachments/assets/a949cda4-874a-4141-87e3-0927da7f1759)
 
 
 ```plantuml
 @startuml
-!define RECTANGLE rectangle
+!define C4P https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master
+!include C4P/C4_Container.puml
 
-title Container Diagram - Player
+title Container Diagram - Chess.com Competitor
 
-' Primary containers for the Player's system experience
-RECTANGLE "Player Web Application" as playerWebApp <<Web Application>> #a2d5ff
-RECTANGLE "Player API Gateway" as playerGateway <<API Gateway>> #f0f8ff
+Person(Player, "Player", "Plays chess, chats, and participates in tournaments")
+Person(Admin, "Administrator", "Manages tournaments and platform settings")
+Person(Spectator, "Spectator", "Watches live games and tournaments")
 
-' Services for Player operations with distinct colors
-RECTANGLE "Authentication Service" as authService <<Service>> #b2dfc0
-RECTANGLE "Game Service" as gameService <<Service>> #cce5ff
-RECTANGLE "AI Chess Bot Service" as aiChessBotService <<Service>> #ffa07a
-RECTANGLE "Leaderboard Service" as leaderboardService <<Service>> #d0e7ff
-RECTANGLE "Chat Service" as chatService <<Service>> #f4a261
-RECTANGLE "Tournaments Service" as tournamentsService <<Service>> #d5a6bd
+System_Boundary(ChessPlatform, "Chess.com Competitor") {
+    Container(Frontend, "Frontend Application", "HTML/CSS/JavaScript", "Provides user interfaces for all users")
+    Container(API, "Backend Server", "Node.js/Express", "Handles business logic, user management, and API endpoints")
+    ContainerDb(Database, "Database", "MongoDB", "Stores user data, game history, leaderboards, and chat logs")
+    Container(Realtime, "WebSocket Service", "WebSocket API", "Enables real-time gameplay, chat, and spectating")
+    Container(StaticContent, "Static Content", "AWS S3", "Hosts static files such as frontend assets")
+    Container(ChessEngine, "Chess Engine API", "External System", "Validates chess moves and provides AI-powered analysis")
+    Container(Auth, "Authentication Service", "Amazon Cognito", "Handles secure user authentication and social login integration")
+}
 
-' Databases below their respective services
-RECTANGLE "MongoDB: User Info" as userDB <<Database>> #ffd700
-RECTANGLE "MongoDB: Game Progress" as gameDB <<Database>> #ffec40
-RECTANGLE "MongoDB: Leaderboard Data" as leaderboardDB <<Database>> #c3e6cb
-RECTANGLE "MongoDB: Tournaments Data" as tournamentsDB <<Database>> #b3d9ff
-RECTANGLE "MongoDB: AI Bot Data" as aiBotDB <<Database>> #ff99c8
+System_Ext(SocialLogin, "Social Login Services", "Handles user authentication via social accounts")
+System_Ext(GDPR, "GDPR Authority", "Ensures compliance with data protection regulations")
 
-' Relationships for web app and system components
-playerWebApp --> playerGateway : "API Requests"
-playerGateway --> authService : "Sign Up/Login"
-playerGateway --> gameService : "Matchmaking/Play with AI or other Players"
-playerGateway --> aiChessBotService : "AI Moves/Decision Making"
-playerGateway --> leaderboardService : "Retrieve Leaderboard Stats"
-playerGateway --> chatService : "Enable Chat"
-playerGateway --> tournamentsService : "Register/Participate in Tournaments"
+Player -down-> Frontend : "Access platform via browser"
+Admin -down-> Frontend : "Manages tournaments and settings"
+Spectator -down-> Frontend : "Watches live games and tournaments"
 
-' Service interactions with their respective databases
-authService --> userDB : "User Authentication & Data"
-gameService --> gameDB : "Track Game Progress"
-aiChessBotService --> aiBotDB : "Fetch AI Logic & Decisions"
-leaderboardService --> leaderboardDB : "Leaderboard Stats"
-tournamentsService --> tournamentsDB : "Tournament Registrations & Progress"
-@enduml
-```
+Frontend -down-> API : "Requests gameplay, user, and tournament data"
+Frontend -down-> Realtime : "Connects for live updates and real-time gameplay"
+Frontend -down-> StaticContent : "Loads static assets"
 
----
+API -down-> Database : "Stores and retrieves user data"
+API -down-> ChessEngine : "Validates moves, requests AI analysis"
+API -down-> Auth : "Authenticates users"
+Realtime -down-> API : "Communicates game state and chat data"
 
-### 2.2. **Container Diagram for Admins**
-
-![image](https://github.com/user-attachments/assets/c63c7df6-3200-49fd-b574-18cabed21822)
-
-```plantuml
-@startuml
-!define RECTANGLE rectangle
-
-title Container Diagram - Admin
-
-' Primary containers for the Admin's system operations
-RECTANGLE "Admin Web Application" as adminWebApp <<Web Application>> #b3e5fc
-RECTANGLE "Admin API Gateway" as adminGateway <<API Gateway>> #e1f5fe
-
-' Admin services with distinct colors
-RECTANGLE "Admin Panel Service" as adminPanelService <<Service>> #c8e6c9
-RECTANGLE "User Management Service" as userManagementService <<Service>> #dcedc8
-RECTANGLE "Tournament Management Service" as tournamentManagementService <<Service>> #ffccbc
-RECTANGLE "User Support Service" as userSupportService <<Service>> #f8bbd0
-RECTANGLE "Analytics & Monitoring Service" as analyticsMonitoringService <<Service>> #ffe0b2
-
-' Databases for the Admin system
-RECTANGLE "MongoDB: User Info" as userDB <<Database>> #ffd700
-RECTANGLE "MongoDB: Tournament Data" as tournamentDB <<Database>> #ffcdd2
-RECTANGLE "MongoDB: User Reports" as userReportsDB <<Database>> #f0f4c3
-RECTANGLE "MongoDB: Admin Analytics Data" as adminAnalyticsDB <<Database>> #bbdefb
-
-' Relationships for admin web app and system components
-adminWebApp --> adminGateway : "Admin Actions"
-adminGateway --> adminPanelService : "Access Admin Panel"
-adminGateway --> userManagementService : "Manage Users"
-adminGateway --> tournamentManagementService : "Manage Tournaments"
-adminGateway --> userSupportService : "Handle User Reports"
-adminGateway --> analyticsMonitoringService : "View Game Analytics & Reports"
-
-' Service interactions with their respective databases
-userManagementService --> userDB : "Fetch/Update User Data"
-tournamentManagementService --> tournamentDB : "Manage Tournaments Data"
-userSupportService --> userReportsDB : "Store & Process Requests"
-analyticsMonitoringService --> adminAnalyticsDB : "Retrieve Game Reports & Logs"
+API -down-> GDPR : "Ensures compliance with regulations"
+Auth -down-> SocialLogin : "Handles third-party authentication"
+Auth -down-> Database : "Stores user credentials"
 @enduml
 ```
 
