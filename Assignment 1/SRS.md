@@ -56,16 +56,15 @@ Core functionalities include:
 3. Admins: Manage user accounts, tournament logistics, and community moderation.  
 
 ### 2.4 Operating Environment
-- Modern web browsers (Google Chrome, Firefox, Safari) on desktops and mobile devices, ensuring cross-platform compatibility.
+- Modern web browsers (Google Chrome) on desktops and mobile devices, ensuring cross-platform compatibility.
 
 ### 2.5 Design and Implementation Constraints
 - Web-only: No native mobile app support.  
-- FIDE compliance: The platform must adhere to standard chess rules.  
-- Concurrency: Support for at least 1,000 simultaneous players.  
+- FIDE compliance: The platform must adhere to standard chess rules.   
 
 ### 2.6 Assumptions and Dependencies
 - Stable internet connection is required for real-time features.  
-- All users have access to modern web browsers.  
+- All users have access to modern web browsers (latest Chrome 131.0.6778 version).  
 
 ---
 
@@ -143,7 +142,7 @@ Core functionalities include:
 ## 5. Non-Functional Requirements
 
 ### 5.1 Performance
-- The platform must handle 1,000 concurrent users with minimal latency.  
+- The platform must handle users with minimal latency.  
 
 ### 5.2 Scalability
 - Modular architecture to be used.  
@@ -158,7 +157,7 @@ Core functionalities include:
 - Responsive design for desktops and mobile browsers.
 
 ### 5.5 Availability
-- Ensure 99.99% uptime for uninterrupted service.  
+- Ensure 99.9% [uptime](https://uptime.is/) for uninterrupted service.  
 - Scheduled maintenance windows will be communicated in advance.  
 
 ### 5.6 Compliance
@@ -166,7 +165,7 @@ Core functionalities include:
 
 ### 5.7 Maintainability
 - Modular codebase for easier updates and bug fixes.  
-- Real-time error logging to identify and resolve issues promptly.  
+- Real-time error logging to identify and resolve issues promptly by admins.  
 
 ---
 
