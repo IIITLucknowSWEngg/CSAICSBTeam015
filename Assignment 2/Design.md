@@ -153,7 +153,6 @@ The following collections will be present in the **MongoDB** database:
 - **Responsibilities**: Manages real-time chat between users during matches.
 - **Endpoints**:
   - `POST /sendMessage`: Sends a message during gameplay.
-  - `GET /chatHistory`: Retrieves chat history.
 
 ---
 
