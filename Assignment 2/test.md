@@ -377,35 +377,7 @@ describe('Admin Tournament Management', function() {
 
 ---
 
-## Feature11: Admin Security Settings  
 
-### Scenario: Admin Configures Security Settings  
-**Given:**  
-The admin is logged into the admin dashboard.  
-The admin navigates to the security settings page.  
-
-**When:**  
-The admin enables two-factor authentication (2FA).  
-The admin saves the settings.  
-
-**Then:**  
-Two-factor authentication is enabled for the system.  
-The admin sees a confirmation message.  
-
-### Code Example:  
-
-```javascript
-const chai = require('chai');
-const expect = chai.expect;
-const adminPage = require('../pages/adminPage');
-
-describe('Admin Security Settings', function() {
-  it('should enable two-factor authentication successfully', function() {
-    adminPage.open();
-    adminPage.enableTwoFactorAuth();
-    expect(adminPage.getSuccessMessage()).to.equal('Two-factor authentication enabled successfully');
-  });
-});
 
 ```
 
