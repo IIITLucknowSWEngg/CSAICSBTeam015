@@ -118,7 +118,6 @@ The following collections will be present in the **MongoDB** database:
 2. **Matches Collection**: Stores match data with `matchId`, `player1`, `player2`, `moves`, and `result`.
 3. **Tournaments Collection**: Stores tournament data including `tournamentId`, `name`, `participants`, and `matches`.
 4. **Leaderboard Collection**: Stores rankings with `rank`, `userId`, and `ELO`.
-5. **Chat Collection**: Stores chat messages with `chatId`, `userId`, `message`, and `timestamp`.
 
 ---
 
