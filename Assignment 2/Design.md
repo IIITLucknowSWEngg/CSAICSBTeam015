@@ -54,7 +54,6 @@ The platform follows a **microservices architecture** that separates different f
 2. **Game Service**: Manages the gameplay, player moves, match states, and results.
 3. **Tournament Service**: Manages tournaments, player registrations, and match scheduling.
 4. **Leaderboard Service**: Tracks player performance, updating rankings based on ELO.
-5. **Chat Service**: Manages real-time messaging between players during games.
 
 #### **Database (MongoDB)**
 - Stores data in collections:
