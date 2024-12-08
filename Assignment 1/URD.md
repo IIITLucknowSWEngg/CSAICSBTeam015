@@ -159,7 +159,7 @@ The Chess.com Competitor will be a web-based platform designed for online chess 
 
 ---
 
-## **4. Functional Requirements**
+## **4. User Requirements**
 
 ### **4.1 Signing Up and Logging In**  
 - I want an easy way to sign up using my email or connect with my Google or Facebook account.  
