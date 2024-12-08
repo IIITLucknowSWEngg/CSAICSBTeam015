@@ -1,4 +1,3 @@
-
 # Stakeholders Document  
 
 ## Introduction  
@@ -18,8 +17,7 @@ This document provides a comprehensive **Stakeholder Register** for the **Chess 
 | **Owner**                     | Ensures alignment with the vision            | Guides overall direction, ensures funding and resource availability | High          | High         | Internal       |
 | **Security Auditing Team**    | Ensures data and platform security           | Conduct audits, identify vulnerabilities, maintain privacy       | High          | High         | Internal       |
 | **End Users (Players)**       | Engage with the platform                     | Play chess, provide feedback                                     | High          | High         | Product        |
-| **Small-Scale Admins**        | Monitor operations in specific regions       | Manage user concerns, monitor local tournaments                 | Medium        | High         | Product        |
-| **Large-Scale Admins**        | Monitor large-scale activities               | Coordinate tournaments, enforce platform rules                   | High          | High         | Product        |
+| **System Admins**             | Monitor platform operations and tournaments  | Manage user concerns, organize tournaments, enforce rules        | High          | High         | Product        |
 | **Investors/Sponsors**        | Provide financial support                    | Ensure funding, track progress, and ROI                          | High          | High         | External       |
 | **Chess Organizations**       | Promote and support chess-related activities | Collaborate for tournaments, training, and content               | Medium        | High         | External       |
 | **Open-Source Contributors**  | Collaborate on specific features             | Offer expertise for integration or unique platform enhancements  | Medium        | Medium       | External       |
@@ -82,19 +80,12 @@ This document provides a comprehensive **Stakeholder Register** for the **Chess 
   - Provide feedback on the interface and features.  
   - Participate in community activities.  
 
-### 2. **Small-Scale Admins**  
-- **Role:** Monitor operations and concerns in specific areas.  
+### 2. **System Admins**  
+- **Role:** Monitor platform operations and tournaments.  
 - **Responsibilities:**  
-  - Manage local tournaments.  
-  - Address region-specific issues or feedback.  
-  - Ensure smooth platform operations in their area.  
-
-### 3. **Large-Scale Admins**  
-- **Role:** Monitor overarching operations and rules.  
-- **Responsibilities:**  
-  - Organize large-scale tournaments.  
-  - Enforce platform rules.  
-  - Work with global chess organizations to ensure standardization.  
+  - Manage user concerns and resolve platform-related issues.  
+  - Organize local and large-scale tournaments.  
+  - Enforce platform rules and ensure compliance with standards.  
 
 ---
 
@@ -138,5 +129,3 @@ This document provides a comprehensive **Stakeholder Register** for the **Chess 
   - Certify tournaments and platform credibility.  
   - Standardize rules and ensure fair play.  
   - Advocate for ethical practices in online chess.  
-
----
