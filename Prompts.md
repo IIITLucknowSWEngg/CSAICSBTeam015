@@ -6,6 +6,12 @@ Prompts :
 
 SRS.md : 
 
+- Suggest a tech stack that would help us build the project (Chess.com Competitor).
+
+- The given text contains a draft of SRS, give me some of the abuse and error cases.
+
+-Can you summarize the document and give a description and conclusion.
+
 URD.md :
 
 -What are some of the extra requirements that user would have?
