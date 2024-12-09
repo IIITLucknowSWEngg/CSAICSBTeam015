@@ -166,3 +166,9 @@ The following collections will be present in the **MongoDB** database:
 
 This document provides a clear blueprint for the development of a modular, scalable chess platform with functionalities such as user authentication, matchmaking, tournaments, leaderboards, and real-time messaging. The architecture ensures a clear separation of concerns using **microservices**, making it easier to manage, scale, and extend as needed.
 
+## **8.1 Engineering Blog References**
+
+https://www.chess.com/blog/chesscom
+
+
+
